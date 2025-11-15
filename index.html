@@ -744,15 +744,23 @@
             <div id="teacher" class="page">
                 <h2 class="page-title">Teacher Section - শিক্ষক বিভাগ</h2>
                 
-                <div class="class-selection">
-                    <h3>General Subject Teachers - সাধারণ বিষয় শিক্ষক</h3>
-                    <div class="class-buttons">
-                        <button data-teacher="bangla">বাংলা (Bangla)</button>
-                        <button data-teacher="english">ইংরেজি (English)</button>
-                        <button data-teacher="math">গণিত (Mathematics)</button>
-                        <button data-teacher="science">বিজ্ঞান (Science)</button>
-                        <button data-teacher="social">সামাজিক বিজ্ঞান (Social Science)</button>
+                <div class="login-form" id="teacherLogin">
+                    <h3>👨‍🏫 Teacher Login</h3>
+                    <div style="background: #f0f8ff; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #3498db;">
+                        <p style="color: #1e3c72; font-weight: bold; margin-bottom: 10px;">📝 Demo Login Credentials:</p>
+                        <p style="color: #555; font-size: 14px; margin: 5px 0;">Username: <strong>bangla_teacher</strong> | Password: <strong>bangla123</strong></p>
+                        <p style="color: #555; font-size: 14px; margin: 5px 0;">Username: <strong>math_teacher</strong> | Password: <strong>math123</strong></p>
+                        <p style="color: #555; font-size: 14px; margin: 5px 0;">Username: <strong>civil_teacher</strong> | Password: <strong>civil123</strong></p>
                     </div>
+                    <div class="form-group">
+                        <label>Username (ব্যবহারকারীর নাম)</label>
+                        <input type="text" id="teacherUsername" placeholder="Enter username">
+                    </div>
+                    <div class="form-group">
+                        <label>Password (পাসওয়ার্ড)</label>
+                        <input type="password" id="teacherPassword" placeholder="Enter password">
+                    </div>
+                    <button class="submit-btn" onclick="teacherLogin()">🔐 Login</button>
                 </div>
 
                 <div id="teacherDashboard" style="display:none;">
@@ -760,7 +768,63 @@
                         <h3 id="teacherName" style="font-size: 32px; margin-bottom: 10px; color: white;"></h3>
                         <p id="teacherSubject" style="font-size: 20px; color: white;"></p>
                     </div>
-                    <div id="teacherContent"></div>
+
+                    <div class="class-selection">
+                        <h3>Select Class - ক্লাস নির্বাচন করুন</h3>
+                        <div class="class-buttons" id="teacherClassButtons">
+                            <button onclick="selectTeacherClass('class6')">Class 6</button>
+                            <button onclick="selectTeacherClass('class7')">Class 7</button>
+                            <button onclick="selectTeacherClass('class8')">Class 8</button>
+                            <button onclick="selectTeacherClass('class9')">Class 9</button>
+                            <button onclick="selectTeacherClass('class10')">Class 10</button>
+                            <button onclick="selectTeacherClass('inter1')">Inter 1st</button>
+                            <button onclick="selectTeacherClass('inter2')">Inter 2nd</button>
+                        </div>
+                    </div>
+
+                    <div id="teacherMarksSection" style="display:none;">
+                        <div class="class-selection">
+                            <h3>Select Exam Type - পরীক্ষার ধরন নির্বাচন করুন</h3>
+                            <div class="class-buttons">
+                                <button onclick="selectExamType('classtest')">📝 Class Test</button>
+                                <button onclick="selectExamType('midterm')">📘 Mid-Term</button>
+                                <button onclick="selectExamType('annual')">📗 Annual/Final</button>
+                            </div>
+                        </div>
+
+                        <div id="marksEntryForm" style="display:none;">
+                            <div class="info-card">
+                                <h3 id="examTypeTitle"></h3>
+                                <div class="form-group">
+                                    <label>Exam Name (পরীক্ষার নাম)</label>
+                                    <input type="text" id="examNameInput" placeholder="e.g., Class Test 1, Mid-Term 2024">
+                                </div>
+                                <div class="form-group">
+                                    <label>Total Marks (মোট নম্বর)</label>
+                                    <input type="number" id="totalMarksInput" placeholder="e.g., 10, 20, 50, 100" min="1">
+                                </div>
+                                <button class="submit-btn" onclick="loadMarksTable()">Load Students</button>
+                            </div>
+
+                            <div id="marksTableSection" style="display:none;">
+                                <div class="info-card">
+                                    <h3>Enter Marks - নম্বর প্রদান করুন</h3>
+                                    <div style="overflow-x: auto;" id="marksTableContainer"></div>
+                                    <div id="marksSaveSuccess" class="success-message">
+                                        ✅ Marks saved successfully! নম্বর সংরক্ষিত হয়েছে!
+                                    </div>
+                                    <button class="submit-btn" style="margin-top: 20px;" onclick="saveTeacherMarks()">💾 Save Marks</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-card" style="margin-top: 30px;">
+                            <h3>📊 Student List - ছাত্র-ছাত্রী তালিকা</h3>
+                            <div id="teacherStudentList"></div>
+                        </div>
+                    </div>
+
+                    <button class="submit-btn" onclick="teacherLogout()" style="margin-top: 20px;">🚪 Logout</button>
                 </div>
             </div>
 
@@ -770,6 +834,12 @@
                 
                 <div class="login-form" id="guardianLogin">
                     <h3>👨‍👩‍👧 Guardian Login</h3>
+                    <div style="background: #f0f8ff; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #3498db;">
+                        <p style="color: #1e3c72; font-weight: bold; margin-bottom: 10px;">📝 Demo Login Credentials:</p>
+                        <p style="color: #555; font-size: 14px; margin: 5px 0;">Roll: <strong>1</strong> | Phone: <strong>01712345678</strong></p>
+                        <p style="color: #555; font-size: 14px; margin: 5px 0;">Roll: <strong>2</strong> | Phone: <strong>01812345678</strong></p>
+                        <p style="color: #555; font-size: 14px; margin: 5px 0;">Roll: <strong>3</strong> | Phone: <strong>01912345678</strong></p>
+                    </div>
                     <div class="form-group">
                         <label>Student Roll Number (ছাত্রের রোল নম্বর)</label>
                         <input type="number" id="guardianRoll" placeholder="Enter student roll number">
@@ -887,13 +957,58 @@
             <!-- Result Page -->
             <div id="result" class="page">
                 <h2 class="page-title">Result Section - ফলাফল বিভাগ</h2>
-                <div class="info-card">
-                    <h3>📊 Examination Results</h3>
-                    <p>Select class to view results</p>
+                
+                <div class="class-selection">
+                    <h3>Select Class - ক্লাস নির্বাচন করুন</h3>
+                    <div class="class-buttons">
+                        <button data-resultclass="class6">Class 6</button>
+                        <button data-resultclass="class7">Class 7</button>
+                        <button data-resultclass="class8">Class 8</button>
+                        <button data-resultclass="class9">Class 9</button>
+                        <button data-resultclass="class10">Class 10</button>
+                        <button data-resultclass="inter1">Inter 1st Year</button>
+                        <button data-resultclass="inter2">Inter 2nd Year</button>
+                    </div>
                 </div>
+
+                <div id="resultExamSection" style="display:none;">
+                    <div class="class-selection">
+                        <h3>Select Exam Type - পরীক্ষার ধরন</h3>
+                        <div class="class-buttons">
+                            <button data-examtype="midterm">📘 Mid-Term Exam</button>
+                            <button data-examtype="annual">📗 Annual Exam</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="resultDisplay" style="display:none;"></div>
             </div>
 
-            <!-- Admission Page -->
+            <!-- Scholarship Page -->
+            <div id="scholarship" class="page">
+                <h2 class="page-title">Scholarship Program - বৃত্তি কার্যক্রম</h2>
+                
+                <div class="info-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center; padding: 30px;">
+                    <h3 style="font-size: 32px; margin-bottom: 15px; color: white;">🎓 Scholarship Eligibility</h3>
+                    <p style="font-size: 18px; color: white;">✓ Attendance: 70%+ (উপস্থিতি ৭০% বা বেশি)</p>
+                    <p style="font-size: 18px; color: white;">✓ Average Marks: 80%+ (গড় নম্বর ৮০% বা বেশি)</p>
+                </div>
+
+                <div class="class-selection">
+                    <h3>Select Class - ক্লাস নির্বাচন করুন</h3>
+                    <div class="class-buttons">
+                        <button data-scholarshipclass="class6">Class 6</button>
+                        <button data-scholarshipclass="class7">Class 7</button>
+                        <button data-scholarshipclass="class8">Class 8</button>
+                        <button data-scholarshipclass="class9">Class 9</button>
+                        <button data-scholarshipclass="class10">Class 10</button>
+                        <button data-scholarshipclass="inter1">Inter 1st Year</button>
+                        <button data-scholarshipclass="inter2">Inter 2nd Year</button>
+                    </div>
+                </div>
+
+                <div id="scholarshipDisplay" style="display:none;"></div>
+            </div>
             <div id="admission" class="page">
                 <h2 class="page-title">Admission Form - ভর্তি ফর্ম</h2>
                 
@@ -948,17 +1063,9 @@
                 </div>
             </div>
 
-            <!-- Scholarship Page -->
-            <div id="scholarship" class="page">
-                <h2 class="page-title">Scholarship Program - বৃত্তি কার্যক্রম</h2>
-                
-                <div class="info-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center; padding: 30px;">
-                    <h3 style="font-size: 32px; margin-bottom: 15px; color: white;">🎓 Scholarship Eligibility</h3>
-                    <p style="font-size: 18px; color: white;">Attendance: 70%+ | Average: 80%+</p>
-                </div>
-            </div>
-
             <!-- About Page -->
+            <div id="about" class="page">
+            <div id="admission" class="page">
             <div id="about" class="page">
                 <h2 class="page-title">About Us - আমাদের সম্পর্কে</h2>
                 
@@ -1057,18 +1164,54 @@
         // Database
         const studentDatabase = {
             class6: [
-                { roll: 1, name: "আহমেদ রাফি", section: "A", totalDays: 100, presentDays: 92, exams: [{name: "1st Term", marks: 85}], guardianPhone: "01712345678" },
-                { roll: 2, name: "ফাতিমা আক্তার", section: "A", totalDays: 100, presentDays: 95, exams: [{name: "1st Term", marks: 92}], guardianPhone: "01812345678" },
-                { roll: 3, name: "রাকিব হাসান", section: "B", totalDays: 100, presentDays: 65, exams: [{name: "1st Term", marks: 75}], guardianPhone: "01912345678" }
+                { roll: 1, name: "আহমেদ রাফি", section: "A", totalDays: 100, presentDays: 92, exams: [{name: "Mid-Term", marks: 85}, {name: "Annual", marks: 88}], guardianPhone: "01712345678" },
+                { roll: 2, name: "ফাতিমা আক্তার", section: "A", totalDays: 100, presentDays: 95, exams: [{name: "Mid-Term", marks: 92}, {name: "Annual", marks: 94}], guardianPhone: "01812345678" },
+                { roll: 3, name: "রাকিব হাসান", section: "B", totalDays: 100, presentDays: 65, exams: [{name: "Mid-Term", marks: 75}, {name: "Annual", marks: 72}], guardianPhone: "01912345678" },
+                { roll: 4, name: "সুমাইয়া ইসলাম", section: "A", totalDays: 100, presentDays: 88, exams: [{name: "Mid-Term", marks: 90}, {name: "Annual", marks: 91}], guardianPhone: "01612345678" },
+                { roll: 5, name: "তানভীর আহমেদ", section: "B", totalDays: 100, presentDays: 78, exams: [{name: "Mid-Term", marks: 82}, {name: "Annual", marks: 85}], guardianPhone: "01512345678" }
             ],
             class7: [
-                { roll: 1, name: "নাবিলা খান", section: "A", totalDays: 100, presentDays: 91, exams: [{name: "1st Term", marks: 88}], guardianPhone: "01612345678" }
+                { roll: 1, name: "নাবিলা খান", section: "A", totalDays: 100, presentDays: 91, exams: [{name: "Mid-Term", marks: 88}, {name: "Annual", marks: 90}], guardianPhone: "01612345678" },
+                { roll: 2, name: "সাকিব আল হাসান", section: "B", totalDays: 100, presentDays: 85, exams: [{name: "Mid-Term", marks: 86}, {name: "Annual", marks: 87}], guardianPhone: "01712345679" },
+                { roll: 3, name: "জান্নাত আরা", section: "A", totalDays: 100, presentDays: 68, exams: [{name: "Mid-Term", marks: 70}, {name: "Annual", marks: 73}], guardianPhone: "01812345679" },
+                { roll: 4, name: "ইমরান হোসেন", section: "B", totalDays: 100, presentDays: 93, exams: [{name: "Mid-Term", marks: 91}, {name: "Annual", marks: 93}], guardianPhone: "01912345679" },
+                { roll: 5, name: "রুমানা আক্তার", section: "A", totalDays: 100, presentDays: 89, exams: [{name: "Mid-Term", marks: 87}, {name: "Annual", marks: 89}], guardianPhone: "01612345679" }
             ],
-            class8: [],
-            class9: [],
-            class10: [],
-            inter1: [],
-            inter2: []
+            class8: [
+                { roll: 1, name: "মাহিয়া মাহতাব", section: "A", totalDays: 100, presentDays: 89, exams: [{name: "Mid-Term", marks: 87}, {name: "Annual", marks: 89}], guardianPhone: "01712345680" },
+                { roll: 2, name: "রিয়াজ উদ্দিন", section: "B", totalDays: 100, presentDays: 72, exams: [{name: "Mid-Term", marks: 78}, {name: "Annual", marks: 80}], guardianPhone: "01812345680" },
+                { roll: 3, name: "তাসনিম জাহান", section: "A", totalDays: 100, presentDays: 94, exams: [{name: "Mid-Term", marks: 93}, {name: "Annual", marks: 95}], guardianPhone: "01912345680" },
+                { roll: 4, name: "ফয়সাল আহমেদ", section: "B", totalDays: 100, presentDays: 86, exams: [{name: "Mid-Term", marks: 85}, {name: "Annual", marks: 87}], guardianPhone: "01612345680" },
+                { roll: 5, name: "সুমি আক্তার", section: "A", totalDays: 100, presentDays: 92, exams: [{name: "Mid-Term", marks: 90}, {name: "Annual", marks: 92}], guardianPhone: "01512345680" }
+            ],
+            class9: [
+                { roll: 1, name: "আরিফুর রহমান", section: "Science", totalDays: 100, presentDays: 90, exams: [{name: "Mid-Term", marks: 89}, {name: "Annual", marks: 91}], guardianPhone: "01712345681" },
+                { roll: 2, name: "নুসরাত জাহান", section: "Science", totalDays: 100, presentDays: 96, exams: [{name: "Mid-Term", marks: 94}, {name: "Annual", marks: 96}], guardianPhone: "01812345681" },
+                { roll: 3, name: "শাহরিয়ার কবির", section: "Commerce", totalDays: 100, presentDays: 66, exams: [{name: "Mid-Term", marks: 71}, {name: "Annual", marks: 74}], guardianPhone: "01912345681" },
+                { roll: 4, name: "সাদিয়া ইসলাম", section: "Science", totalDays: 100, presentDays: 93, exams: [{name: "Mid-Term", marks: 91}, {name: "Annual", marks: 93}], guardianPhone: "01612345681" },
+                { roll: 5, name: "তানজিল আহমেদ", section: "Commerce", totalDays: 100, presentDays: 78, exams: [{name: "Mid-Term", marks: 80}, {name: "Annual", marks: 82}], guardianPhone: "01512345681" }
+            ],
+            class10: [
+                { roll: 1, name: "রিফাত জাহান", section: "Science", totalDays: 100, presentDays: 92, exams: [{name: "Mid-Term", marks: 90}, {name: "Annual", marks: 92}], guardianPhone: "01712345682" },
+                { roll: 2, name: "মাহমুদুল হাসান", section: "Science", totalDays: 100, presentDays: 87, exams: [{name: "Mid-Term", marks: 85}, {name: "Annual", marks: 87}], guardianPhone: "01812345682" },
+                { roll: 3, name: "সাদিয়া আফরিন", section: "Commerce", totalDays: 100, presentDays: 74, exams: [{name: "Mid-Term", marks: 80}, {name: "Annual", marks: 82}], guardianPhone: "01912345682" },
+                { roll: 4, name: "নাহিয়ান ফয়সাল", section: "Science", totalDays: 100, presentDays: 95, exams: [{name: "Mid-Term", marks: 93}, {name: "Annual", marks: 95}], guardianPhone: "01612345682" },
+                { roll: 5, name: "রাবেয়া খাতুন", section: "Commerce", totalDays: 100, presentDays: 80, exams: [{name: "Mid-Term", marks: 82}, {name: "Annual", marks: 84}], guardianPhone: "01512345682" }
+            ],
+            inter1: [
+                { roll: 1, name: "তানজিম আহমেদ", section: "Science", totalDays: 100, presentDays: 91, exams: [{name: "Mid-Term", marks: 88}, {name: "Annual", marks: 90}], guardianPhone: "01712345683" },
+                { roll: 2, name: "মারিয়া সুলতানা", section: "Science", totalDays: 100, presentDays: 95, exams: [{name: "Mid-Term", marks: 93}, {name: "Annual", marks: 95}], guardianPhone: "01812345683" },
+                { roll: 3, name: "রাশেদুল ইসলাম", section: "Commerce", totalDays: 100, presentDays: 69, exams: [{name: "Mid-Term", marks: 75}, {name: "Annual", marks: 77}], guardianPhone: "01912345683" },
+                { roll: 4, name: "নাজিয়া খাতুন", section: "Science", totalDays: 100, presentDays: 92, exams: [{name: "Mid-Term", marks: 90}, {name: "Annual", marks: 92}], guardianPhone: "01612345683" },
+                { roll: 5, name: "আসিফ মাহমুদ", section: "Arts", totalDays: 100, presentDays: 76, exams: [{name: "Mid-Term", marks: 78}, {name: "Annual", marks: 80}], guardianPhone: "01512345683" }
+            ],
+            inter2: [
+                { roll: 1, name: "মোঃ মোবারক হোসেন মুন্না", section: "Civil Engineering", totalDays: 100, presentDays: 93, exams: [{name: "Mid-Term", marks: 91}, {name: "Annual", marks: 93}], guardianPhone: "01712345684" },
+                { roll: 2, name: "ফাহিম আহমেদ", section: "Computer Engineering", totalDays: 100, presentDays: 89, exams: [{name: "Mid-Term", marks: 87}, {name: "Annual", marks: 89}], guardianPhone: "01812345684" },
+                { roll: 3, name: "নাফিসা তাবাসসুম", section: "Electrical Engineering", totalDays: 100, presentDays: 71, exams: [{name: "Mid-Term", marks: 79}, {name: "Annual", marks: 81}], guardianPhone: "01912345684" },
+                { roll: 4, name: "তামিম ইকবাল", section: "Mechanical Engineering", totalDays: 100, presentDays: 94, exams: [{name: "Mid-Term", marks: 92}, {name: "Annual", marks: 94}], guardianPhone: "01612345684" },
+                { roll: 5, name: "সাবিহা আক্তার", section: "Civil Engineering", totalDays: 100, presentDays: 78, exams: [{name: "Mid-Term", marks: 80}, {name: "Annual", marks: 82}], guardianPhone: "01512345684" }
+            ]
         };
 
         const teacherDatabase = {
@@ -1076,21 +1219,49 @@
             english: { name: "সালমা বেগম ম্যাডাম", subject: "ইংরেজি (English)" },
             math: { name: "রফিকুল ইসলাম স্যার", subject: "গণিত (Mathematics)" },
             science: { name: "নাজমা আক্তার ম্যাডাম", subject: "বিজ্ঞান (Science)" },
-            social: { name: "কামরুল হাসান স্যার", subject: "সামাজিক বিজ্ঞান" }
+            social: { name: "কামরুল হাসান স্যার", subject: "সামাজিক বিজ্ঞান" },
+            civil: { name: "Koushik Ahmed Niloy", subject: "Civil Engineering" },
+            computer: { name: "Jihad Khan", subject: "Computer Engineering" },
+            mechanical: { name: "আরিফুর রহমান স্যার", subject: "Mechanical Engineering" },
+            electrical: { name: "তানভীর হোসেন স্যার", subject: "Electrical Engineering" }
         };
 
         const sportsDatabase = {
             football: [
-                { name: "মোঃ মোবারক হোসেন মুন্না", class: "Inter 2nd", position: "Forward" }
+                { name: "মোঃ মোবারক হোসেন মুন্না", class: "Inter 2nd Year", department: "Civil Engineering", position: "Forward", achievements: "Inter College Champion 2024" },
+                { name: "রাফিউল ইসলাম", class: "Class 10", section: "Science", position: "Goalkeeper", achievements: "Best Goalkeeper 2024" },
+                { name: "তানভীর আহমেদ", class: "Class 9", section: "Science", position: "Midfielder", achievements: "District Level Player" },
+                { name: "ফাহিম আহমেদ", class: "Inter 2nd Year", department: "Computer Engineering", position: "Defender", achievements: "Best Defender 2024" }
             ],
-            cricket: [],
-            badminton: [],
-            volleyball: []
+            cricket: [
+                { name: "তামিম ইকবাল", class: "Inter 2nd Year", department: "Mechanical Engineering", position: "Batsman", achievements: "Century Maker" },
+                { name: "নাহিয়ান ফয়সাল", class: "Class 10", section: "Science", position: "All-rounder", achievements: "Man of the Match 5 times" },
+                { name: "মাহমুদুল হাসান", class: "Class 9", section: "Science", position: "Bowler", achievements: "5 Wicket Haul" },
+                { name: "আরিফুর রহমান", class: "Class 9", section: "Science", position: "Wicket Keeper", achievements: "Best Keeper Award" }
+            ],
+            badminton: [
+                { name: "নুসরাত জাহান", class: "Class 9", section: "Science", position: "Singles", achievements: "District Champion 2024" },
+                { name: "মারিয়া সুলতানা", class: "Inter 1st Year", section: "Science", position: "Singles", achievements: "School Champion" },
+                { name: "নাফিসা তাবাসসুম", class: "Inter 2nd Year", department: "Electrical Engineering", position: "Doubles", achievements: "Regional Runner-up" },
+                { roll: 2, name: "ফাতিমা আক্তার", class: "Class 6", section: "A", position: "Singles", achievements: "Junior Champion" }
+            ],
+            volleyball: [
+                { name: "তানজিল আহমেদ", class: "Class 9", section: "Commerce", position: "Spiker", achievements: "Best Spiker 2024" },
+                { name: "ফয়সাল আহমেদ", class: "Class 8", section: "B", position: "Setter", achievements: "Team Captain" },
+                { name: "রিফাত জাহান", class: "Class 10", section: "Science", position: "Blocker", achievements: "Defensive Player Award" },
+                { name: "আসিফ মাহমুদ", class: "Inter 1st Year", section: "Arts", position: "Server", achievements: "Best Server 2024" }
+            ]
         };
 
         let currentStudent = null;
         let notifications = [];
         let fingerprintData = {right1: false, right2: false, left1: false, left2: false};
+        let currentResultClass = '';
+        let currentScholarshipClass = '';
+        let currentTeacher = null;
+        let currentTeacherClass = '';
+        let currentTeacherExamType = '';
+        let teacherMarksStorage = {};
 
         // Navigation
         document.addEventListener('DOMContentLoaded', function() {
@@ -1117,9 +1288,33 @@
                 });
             });
 
+            document.querySelectorAll('button[data-teacher]').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    selectTeacher(this.getAttribute('data-teacher'));
+                });
+            });
+
             document.querySelectorAll('button[data-sport]').forEach(btn => {
                 btn.addEventListener('click', function() {
                     loadSport(this.getAttribute('data-sport'));
+                });
+            });
+
+            document.querySelectorAll('button[data-resultclass]').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    selectResultClass(this.getAttribute('data-resultclass'));
+                });
+            });
+
+            document.querySelectorAll('button[data-examtype]').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    displayResults(this.getAttribute('data-examtype'));
+                });
+            });
+
+            document.querySelectorAll('button[data-scholarshipclass]').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    displayScholarship(this.getAttribute('data-scholarshipclass'));
                 });
             });
 
@@ -1206,6 +1401,222 @@
             document.getElementById('teacherName').textContent = teacher.name;
             document.getElementById('teacherSubject').textContent = 'বিষয়: ' + teacher.subject;
             document.getElementById('teacherDashboard').style.display = 'block';
+        }
+
+        function teacherLogin() {
+            const username = document.getElementById('teacherUsername').value;
+            const password = document.getElementById('teacherPassword').value;
+            
+            const teacherLogins = {
+                'bangla_teacher': {code: 'bangla', password: 'bangla123'},
+                'english_teacher': {code: 'english', password: 'english123'},
+                'math_teacher': {code: 'math', password: 'math123'},
+                'science_teacher': {code: 'science', password: 'science123'},
+                'civil_teacher': {code: 'civil', password: 'civil123'},
+                'computer_teacher': {code: 'computer', password: 'computer123'}
+            };
+            
+            const login = teacherLogins[username];
+            
+            if (login && login.password === password) {
+                currentTeacher = teacherDatabase[login.code];
+                currentTeacher.code = login.code;
+                
+                document.getElementById('teacherLogin').style.display = 'none';
+                document.getElementById('teacherDashboard').style.display = 'block';
+                document.getElementById('teacherName').textContent = currentTeacher.name;
+                document.getElementById('teacherSubject').textContent = 'বিষয়: ' + currentTeacher.subject;
+            } else {
+                alert('❌ Invalid credentials! Please check username and password.');
+            }
+        }
+
+        function teacherLogout() {
+            currentTeacher = null;
+            currentTeacherClass = '';
+            currentTeacherExamType = '';
+            document.getElementById('teacherLogin').style.display = 'block';
+            document.getElementById('teacherDashboard').style.display = 'none';
+            document.getElementById('teacherMarksSection').style.display = 'none';
+            document.getElementById('teacherUsername').value = '';
+            document.getElementById('teacherPassword').value = '';
+        }
+
+        function selectTeacherClass(className) {
+            currentTeacherClass = className;
+            document.getElementById('teacherMarksSection').style.display = 'block';
+            document.getElementById('marksEntryForm').style.display = 'none';
+            loadTeacherStudentList();
+        }
+
+        function selectExamType(examType) {
+            currentTeacherExamType = examType;
+            
+            const titles = {
+                'classtest': '📝 Class Test',
+                'midterm': '📘 Mid-Term Exam',
+                'annual': '📗 Annual/Final Exam'
+            };
+            
+            document.getElementById('examTypeTitle').textContent = titles[examType];
+            document.getElementById('marksEntryForm').style.display = 'block';
+            document.getElementById('marksTableSection').style.display = 'none';
+            document.getElementById('examNameInput').value = '';
+            document.getElementById('totalMarksInput').value = '';
+        }
+
+        function loadMarksTable() {
+            const examName = document.getElementById('examNameInput').value.trim();
+            const totalMarks = parseInt(document.getElementById('totalMarksInput').value);
+            
+            if (!examName) {
+                alert('❌ Please enter exam name! / পরীক্ষার নাম লিখুন!');
+                return;
+            }
+            
+            if (!totalMarks || totalMarks < 1) {
+                alert('❌ Please enter valid total marks! / সঠিক মোট নম্বর লিখুন!');
+                return;
+            }
+            
+            const students = studentDatabase[currentTeacherClass] || [];
+            
+            let tableHtml = `
+                <table class="exam-table">
+                    <thead>
+                        <tr>
+                            <th>Roll</th>
+                            <th>Name</th>
+                            <th>Section</th>
+                            <th>Marks (out of ${totalMarks})</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            
+            students.forEach(student => {
+                tableHtml += `
+                    <tr>
+                        <td>${student.roll}</td>
+                        <td>${student.name}</td>
+                        <td>${student.section}</td>
+                        <td>
+                            <input type="number" 
+                                   class="marks-input" 
+                                   data-roll="${student.roll}" 
+                                   min="0" 
+                                   max="${totalMarks}" 
+                                   placeholder="0-${totalMarks}"
+                                   style="width: 100px; padding: 8px; border: 2px solid #3498db; border-radius: 5px; text-align: center;">
+                        </td>
+                    </tr>
+                `;
+            });
+            
+            tableHtml += '</tbody></table>';
+            
+            document.getElementById('marksTableContainer').innerHTML = tableHtml;
+            document.getElementById('marksTableSection').style.display = 'block';
+            document.getElementById('marksSaveSuccess').style.display = 'none';
+        }
+
+        function saveTeacherMarks() {
+            const examName = document.getElementById('examNameInput').value.trim();
+            const totalMarks = parseInt(document.getElementById('totalMarksInput').value);
+            const marksInputs = document.querySelectorAll('.marks-input');
+            
+            if (!currentTeacher || !currentTeacherClass || !currentTeacherExamType) {
+                alert('❌ Missing information!');
+                return;
+            }
+            
+            let savedCount = 0;
+            const marksData = {
+                teacher: currentTeacher.name,
+                subject: currentTeacher.subject,
+                examName: examName,
+                examType: currentTeacherExamType,
+                totalMarks: totalMarks,
+                date: new Date().toLocaleDateString('bn-BD'),
+                marks: {}
+            };
+            
+            marksInputs.forEach(input => {
+                const roll = parseInt(input.getAttribute('data-roll'));
+                const marks = parseInt(input.value);
+                
+                if (!isNaN(marks) && marks >= 0 && marks <= totalMarks) {
+                    marksData.marks[roll] = marks;
+                    savedCount++;
+                }
+            });
+            
+            if (savedCount === 0) {
+                alert('❌ No marks entered! / কোন নম্বর প্রদান করা হয়নি!');
+                return;
+            }
+            
+            // Save to storage
+            if (!teacherMarksStorage[currentTeacher.code]) {
+                teacherMarksStorage[currentTeacher.code] = {};
+            }
+            if (!teacherMarksStorage[currentTeacher.code][currentTeacherClass]) {
+                teacherMarksStorage[currentTeacher.code][currentTeacherClass] = [];
+            }
+            
+            teacherMarksStorage[currentTeacher.code][currentTeacherClass].push(marksData);
+            
+            const successMsg = document.getElementById('marksSaveSuccess');
+            successMsg.style.display = 'block';
+            successMsg.textContent = `✅ Marks saved for ${savedCount} students! / ${savedCount} জন ছাত্রের নম্বর সংরক্ষিত!`;
+            
+            setTimeout(() => {
+                successMsg.style.display = 'none';
+            }, 5000);
+            
+            loadTeacherStudentList();
+        }
+
+        function loadTeacherStudentList() {
+            const students = studentDatabase[currentTeacherClass] || [];
+            const savedMarks = teacherMarksStorage[currentTeacher?.code]?.[currentTeacherClass] || [];
+            
+            let html = '<div style="overflow-x: auto;"><table class="exam-table"><thead><tr>';
+            html += '<th>Roll</th><th>Name</th><th>Section</th><th>Attendance</th>';
+            
+            if (savedMarks.length > 0) {
+                html += '<th>Saved Marks</th>';
+            }
+            
+            html += '</tr></thead><tbody>';
+            
+            students.forEach(student => {
+                const attendancePercent = (student.presentDays / student.totalDays * 100).toFixed(1);
+                const attendanceColor = attendancePercent >= 90 ? '#2ecc71' : attendancePercent >= 70 ? '#f39c12' : '#e74c3c';
+                
+                html += `
+                    <tr>
+                        <td>${student.roll}</td>
+                        <td>${student.name}</td>
+                        <td>${student.section}</td>
+                        <td style="color: ${attendanceColor}; font-weight: bold;">${attendancePercent}%</td>
+                `;
+                
+                if (savedMarks.length > 0) {
+                    let marksText = '';
+                    savedMarks.forEach(record => {
+                        if (record.marks[student.roll] !== undefined) {
+                            marksText += `${record.examName}: ${record.marks[student.roll]}/${record.totalMarks}<br>`;
+                        }
+                    });
+                    html += `<td style="font-size: 13px;">${marksText || '-'}</td>`;
+                }
+                
+                html += '</tr>';
+            });
+            
+            html += '</tbody></table></div>';
+            document.getElementById('teacherStudentList').innerHTML = html;
         }
 
         function loadSport(sportName) {
@@ -1351,10 +1762,28 @@
         }
 
         function scanFingerprint(finger) {
-            const scanner = document.getElementById(finger === 'right1' ? 'rightFinger1' : 
-                                                   finger === 'right2' ? 'rightFinger2' :
-                                                   finger === 'left1' ? 'leftFinger1' : 'leftFinger2');
-            const status = document.getElementById(finger + 'Status');
+            const fingerId = finger + 'Status';
+            const status = document.getElementById(fingerId);
+            
+            if (!status) {
+                console.error('Status element not found:', fingerId);
+                return;
+            }
+            
+            const scannerId = finger === 'right1' ? 'rightFinger1' : 
+                             finger === 'right2' ? 'rightFinger2' :
+                             finger === 'left1' ? 'leftFinger1' : 'leftFinger2';
+            const scanner = document.getElementById(scannerId);
+            
+            if (!scanner) {
+                console.error('Scanner element not found:', scannerId);
+                return;
+            }
+            
+            // Prevent double scan
+            if (fingerprintData[finger]) {
+                return;
+            }
             
             scanner.classList.add('scanning');
             status.textContent = '⏳';
@@ -1365,17 +1794,31 @@
                 scanner.style.background = 'linear-gradient(135deg, #2ecc71 0%, #27ae60 100%)';
                 fingerprintData[finger] = true;
                 
+                // Check if all fingerprints are scanned
                 if (fingerprintData.right1 && fingerprintData.right2 && 
                     fingerprintData.left1 && fingerprintData.left2) {
-                    document.getElementById('fingerprintStatus').style.display = 'block';
+                    const fpStatus = document.getElementById('fingerprintStatus');
+                    if (fpStatus) {
+                        fpStatus.style.display = 'block';
+                    }
                 }
             }, 2000);
         }
 
         function resetFingerprintUI() {
-            ['rightFinger1', 'rightFinger2', 'leftFinger1', 'leftFinger2'].forEach(id => {
-                document.getElementById(id).style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
-                document.getElementById(id + 'Status').textContent = '👆';
+            const fingers = ['right1', 'right2', 'left1', 'left2'];
+            const scannerIds = ['rightFinger1', 'rightFinger2', 'leftFinger1', 'leftFinger2'];
+            
+            scannerIds.forEach((scannerId, index) => {
+                const scanner = document.getElementById(scannerId);
+                const status = document.getElementById(fingers[index] + 'Status');
+                
+                if (scanner) {
+                    scanner.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                }
+                if (status) {
+                    status.textContent = '👆';
+                }
             });
         }
 
@@ -1437,6 +1880,122 @@
 
         function viewResults() {
             document.getElementById('principalContent').innerHTML = '<div class="info-card"><h3>📝 Results Overview</h3><p>Results management system</p></div>';
+        }
+
+        function selectResultClass(className) {
+            currentResultClass = className;
+            document.getElementById('resultExamSection').style.display = 'block';
+            document.getElementById('resultDisplay').style.display = 'none';
+        }
+
+        function displayResults(examType) {
+            const students = studentDatabase[currentResultClass] || [];
+            const examName = examType === 'midterm' ? 'Mid-Term' : 'Annual';
+            
+            let html = `
+                <div class="info-card">
+                    <h3 style="text-align: center; color: #1e3c72; margin-bottom: 20px;">
+                        ${currentResultClass.toUpperCase()} - ${examName} Exam Results
+                    </h3>
+                    <div style="overflow-x: auto;">
+                        <table class="exam-table">
+                            <thead>
+                                <tr>
+                                    <th>Roll</th>
+                                    <th>Name</th>
+                                    <th>Section</th>
+                                    <th>Marks</th>
+                                    <th>Grade</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+            `;
+            
+            students.forEach(student => {
+                const exam = student.exams.find(e => e.name === examName);
+                const marks = exam ? exam.marks : 0;
+                let grade = '';
+                
+                if (marks >= 90) grade = 'A+';
+                else if (marks >= 80) grade = 'A';
+                else if (marks >= 70) grade = 'B';
+                else if (marks >= 60) grade = 'C';
+                else grade = 'F';
+                
+                html += `
+                    <tr>
+                        <td>${student.roll}</td>
+                        <td>${student.name}</td>
+                        <td>${student.section}</td>
+                        <td><strong>${marks}</strong></td>
+                        <td><strong style="color: ${marks >= 80 ? '#2ecc71' : marks >= 60 ? '#f39c12' : '#e74c3c'};">${grade}</strong></td>
+                    </tr>
+                `;
+            });
+            
+            html += `
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('resultDisplay').innerHTML = html;
+            document.getElementById('resultDisplay').style.display = 'block';
+        }
+
+        function displayScholarship(className) {
+            currentScholarshipClass = className;
+            const students = studentDatabase[className] || [];
+            
+            let eligibleHtml = '';
+            let notEligibleHtml = '';
+            
+            students.forEach(student => {
+                const attendancePercent = (student.presentDays / student.totalDays * 100);
+                const totalMarks = student.exams.reduce((sum, exam) => sum + exam.marks, 0);
+                const averageMarks = student.exams.length > 0 ? totalMarks / student.exams.length : 0;
+                
+                const isEligible = attendancePercent >= 70 && averageMarks >= 80;
+                
+                const cardHtml = `
+                    <div class="student-card" style="border-color: ${isEligible ? '#2ecc71' : '#e74c3c'};">
+                        <h4>${student.name}</h4>
+                        <p><strong>Roll:</strong> ${student.roll} | <strong>Section:</strong> ${student.section}</p>
+                        <p><strong>Attendance:</strong> ${attendancePercent.toFixed(1)}% (${student.presentDays}/${student.totalDays})</p>
+                        <p><strong>Average Marks:</strong> ${averageMarks.toFixed(1)}%</p>
+                        <span class="attendance-badge ${isEligible ? 'attendance-good' : 'attendance-danger'}">
+                            ${isEligible ? '✅ Eligible' : '❌ Not Eligible'}
+                        </span>
+                        ${!isEligible ? `<p style="color: #e74c3c; margin-top: 10px;"><small>Reason: ${attendancePercent < 70 ? 'Low Attendance' : 'Low Average'}</small></p>` : ''}
+                    </div>
+                `;
+                
+                if (isEligible) {
+                    eligibleHtml += cardHtml;
+                } else {
+                    notEligibleHtml += cardHtml;
+                }
+            });
+            
+            let html = `
+                <div class="info-card" style="margin-top: 30px;">
+                    <h3 style="color: #2ecc71; margin-bottom: 20px;">✅ Eligible Students - যোগ্য ছাত্র-ছাত্রী</h3>
+                    <div class="student-list">
+                        ${eligibleHtml || '<p style="text-align: center; color: #999;">No eligible students</p>'}
+                    </div>
+                </div>
+                
+                <div class="info-card" style="margin-top: 30px;">
+                    <h3 style="color: #e74c3c; margin-bottom: 20px;">❌ Not Eligible Students - অযোগ্য ছাত্র-ছাত্রী</h3>
+                    <div class="student-list">
+                        ${notEligibleHtml || '<p style="text-align: center; color: #999;">All students are eligible</p>'}
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('scholarshipDisplay').innerHTML = html;
+            document.getElementById('scholarshipDisplay').style.display = 'block';
         }
 
         function submitAdmission() {
