@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>School Website</title>
+    <title>School Management System</title>
     <style>
         * {
             margin: 0;
@@ -443,7 +443,6 @@
             display: none;
         }
 
-        /* Admission Form Styles */
         .form-group {
             margin-bottom: 20px;
         }
@@ -505,106 +504,154 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.3);
         }
 
-        /* Scholarship Styles */
-        .scholarship-card {
+        .notification-box {
             background: white;
-            border: 3px solid #2ecc71;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            border-left: 5px solid #2ecc71;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            animation: slideIn 0.5s;
         }
 
-        .scholarship-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        .notification-box.alert {
+            border-left-color: #e74c3c;
         }
 
-        .scholarship-card.not-eligible {
-            border-color: #e74c3c;
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
-        .scholarship-header {
+        .notification-time {
+            font-size: 12px;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        .login-form {
+            max-width: 400px;
+            margin: 50px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .login-form h3 {
+            text-align: center;
+            color: #1e3c72;
+            margin-bottom: 30px;
+        }
+
+        .fingerprint-scanner {
+            width: 150px;
+            height: 150px;
+            margin: 20px auto;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: center;
+            font-size: 70px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .fingerprint-scanner:hover {
+            transform: scale(1.1);
+        }
+
+        .fingerprint-scanner.scanning {
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .add-student-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 30px;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .add-student-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .principal-card {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .stat-card h4 {
+            color: #1e3c72;
+            font-size: 16px;
             margin-bottom: 10px;
         }
 
-        .scholarship-name {
-            font-size: 20px;
+        .stat-card .stat-number {
+            font-size: 36px;
             font-weight: bold;
-            color: #1e3c72;
-        }
-
-        .scholarship-badge {
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 14px;
-        }
-
-        .badge-eligible {
-            background: #2ecc71;
-            color: white;
-        }
-
-        .badge-not-eligible {
-            background: #e74c3c;
-            color: white;
-        }
-
-        /* About Section Styles */
-        .about-section {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-
-        .about-section h3 {
-            color: #1e3c72;
-            font-size: 28px;
-            margin-bottom: 20px;
-            border-bottom: 3px solid #3498db;
-            padding-bottom: 10px;
-        }
-
-        .about-section p {
-            color: #555;
-            line-height: 1.8;
-            font-size: 16px;
-            margin-bottom: 15px;
-            text-align: justify;
-        }
-
-        .about-section ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .about-section ul li {
-            padding: 10px 0;
-            color: #555;
-            font-size: 16px;
-            position: relative;
-            padding-left: 30px;
-        }
-
-        .about-section ul li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
             color: #2ecc71;
-            font-weight: bold;
-            font-size: 20px;
         }
 
         @media (max-width: 768px) {
             .form-row {
                 grid-template-columns: 1fr;
+            }
+            
+            .hero-section h1 {
+                font-size: 32px;
+            }
+            
+            .add-student-btn {
+                bottom: 20px;
+                right: 20px;
             }
         }
     </style>
@@ -613,11 +660,11 @@
     <div class="container">
         <div class="logo-section">
             <div class="logo-box">
-                <div class="logo">S</div>
+                <div class="logo">🎓</div>
                 <div class="logo-text">School Logo 1</div>
             </div>
             <div class="logo-box">
-                <div class="logo">E</div>
+                <div class="logo">📚</div>
                 <div class="logo-text">School Logo 2</div>
             </div>
         </div>
@@ -641,7 +688,7 @@
             <!-- Homepage -->
             <div id="home" class="page active">
                 <div class="hero-section">
-                    <h1>Welcome to Our School</h1>
+                    <h1>🌟 Welcome to Our School 🌟</h1>
                     <p>আমাদের স্কুলে আপনাকে স্বাগতম</p>
                     <p>Excellence in Education | শিক্ষায় উৎকর্ষতা</p>
                 </div>
@@ -649,15 +696,15 @@
                 <div class="info-grid">
                     <div class="info-card">
                         <h3>📚 Quality Education</h3>
-                        <p>We provide world-class education with experienced teachers.</p>
+                        <p>We provide world-class education with experienced teachers and modern teaching methods.</p>
                     </div>
                     <div class="info-card">
                         <h3>🏆 Achievements</h3>
-                        <p>Our students excel in academics and sports.</p>
+                        <p>Our students excel in academics, sports, and extracurricular activities.</p>
                     </div>
                     <div class="info-card">
                         <h3>🌟 Modern Infrastructure</h3>
-                        <p>State-of-the-art facilities for holistic development.</p>
+                        <p>State-of-the-art facilities including smart classrooms and advanced laboratories.</p>
                     </div>
                 </div>
             </div>
@@ -680,43 +727,10 @@
                 </div>
 
                 <div class="search-box">
-                    <input type="text" id="studentSearch" placeholder="Roll Number দিয়ে Search করুন..." onkeyup="searchStudent()">
+                    <input type="text" id="studentSearch" placeholder="🔍 Roll Number দিয়ে Search করুন..." onkeyup="searchStudent()">
                 </div>
 
-                <div id="class6" class="class-container" style="display:none;">
-                    <h3>Class 6 - Students List</h3>
-                    <div class="student-list" id="studentList6"></div>
-                </div>
-
-                <div id="class7" class="class-container" style="display:none;">
-                    <h3>Class 7 - Students List</h3>
-                    <div class="student-list" id="studentList7"></div>
-                </div>
-
-                <div id="class8" class="class-container" style="display:none;">
-                    <h3>Class 8 - Students List</h3>
-                    <div class="student-list" id="studentList8"></div>
-                </div>
-
-                <div id="class9" class="class-container" style="display:none;">
-                    <h3>Class 9 - Students List</h3>
-                    <div class="student-list" id="studentList9"></div>
-                </div>
-
-                <div id="class10" class="class-container" style="display:none;">
-                    <h3>Class 10 - Students List</h3>
-                    <div class="student-list" id="studentList10"></div>
-                </div>
-
-                <div id="inter1" class="class-container" style="display:none;">
-                    <h3>Inter 1st Year - Students List</h3>
-                    <div class="student-list" id="studentListInter1"></div>
-                </div>
-
-                <div id="inter2" class="class-container" style="display:none;">
-                    <h3>Inter 2nd Year - Students List</h3>
-                    <div class="student-list" id="studentListInter2"></div>
-                </div>
+                <div id="studentListContainer"></div>
 
                 <div id="studentModal" class="modal">
                     <div class="modal-content">
@@ -738,20 +752,6 @@
                         <button data-teacher="math">গণিত (Mathematics)</button>
                         <button data-teacher="science">বিজ্ঞান (Science)</button>
                         <button data-teacher="social">সামাজিক বিজ্ঞান (Social Science)</button>
-                        <button data-teacher="physics">পদার্থবিজ্ঞান (Physics)</button>
-                        <button data-teacher="chemistry">রসায়ন (Chemistry)</button>
-                        <button data-teacher="biology">জীববিজ্ঞান (Biology)</button>
-                        <button data-teacher="ict">আইসিটি (ICT)</button>
-                    </div>
-                </div>
-
-                <div class="class-selection" style="margin-top: 30px;">
-                    <h3>Trade/Department Teachers - ট্রেড/ডিপার্টমেন্ট শিক্ষক</h3>
-                    <div class="class-buttons">
-                        <button data-teacher="civil">🏗️ Civil Engineering</button>
-                        <button data-teacher="computer">💻 Computer Engineering</button>
-                        <button data-teacher="mechanical">⚙️ Mechanical Engineering</button>
-                        <button data-teacher="electrical">⚡ Electrical Engineering</button>
                     </div>
                 </div>
 
@@ -760,71 +760,50 @@
                         <h3 id="teacherName" style="font-size: 32px; margin-bottom: 10px; color: white;"></h3>
                         <p id="teacherSubject" style="font-size: 20px; color: white;"></p>
                     </div>
-
-                    <div class="class-selection">
-                        <h3>Select Class - ক্লাস নির্বাচন করুন</h3>
-                        <div class="class-buttons" id="teacherClassButtons"></div>
-                    </div>
-
-                    <div id="teacherStudentSection" style="display:none;">
-                        <div class="class-selection">
-                            <h3>Select Exam Type - পরীক্ষার ধরন</h3>
-                            <div class="class-buttons">
-                                <button data-examtype="midterm">📘 Mid-Term (অর্ধ-বার্ষিক)</button>
-                                <button data-examtype="annual">📗 Annual (বার্ষিক)</button>
-                                <button data-examtype="classtest">📝 Class Test (ক্লাস টেস্ট)</button>
-                                <button data-examtype="assessment">📋 Assessment (এসেসমেন্ট)</button>
-                            </div>
-                        </div>
-
-                        <div id="marksEntryForm" style="display:none;">
-                            <div class="info-card">
-                                <h3 id="examTypeTitle"></h3>
-                                <div style="margin-bottom: 15px;">
-                                    <label><strong>Exam Name (পরীক্ষার নাম):</strong></label>
-                                    <input type="text" id="examName" placeholder="e.g., Mid-Term 2024" style="width: 100%; padding: 12px; border: 2px solid #3498db; border-radius: 8px; margin-top: 5px;">
-                                </div>
-                                <div style="margin-bottom: 15px;">
-                                    <label><strong>Total Marks (মোট নম্বর):</strong></label>
-                                    <input type="number" id="totalMarks" placeholder="e.g., 10, 20, 50, 100" min="1" style="width: 100%; padding: 12px; border: 2px solid #3498db; border-radius: 8px; margin-top: 5px;">
-                                    <small style="color: #666; display: block; margin-top: 5px;">পরীক্ষা কত নম্বরের? (10, 20, 30, 50, 100 etc.)</small>
-                                </div>
-                                <button onclick="loadMarksEntryTable()" style="padding: 12px 30px; background: #2ecc71; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px;">✅ Load Students</button>
-                            </div>
-
-                            <div id="marksTableContainer" style="display:none;">
-                                <div class="info-card">
-                                    <h3>Enter Marks - নম্বর প্রদান করুন</h3>
-                                    <p style="color: #e74c3c; font-weight: bold; margin-bottom: 10px;">
-                                        ⚠️ সকল ছাত্র-ছাত্রীর নম্বর প্রদান করুন
-                                    </p>
-                                    <div style="overflow-x: auto;">
-                                        <table class="exam-table" id="marksEntryTable"></table>
-                                    </div>
-                                    <div id="successMessage" class="success-message">
-                                        ✅ Marks saved successfully! / নম্বর সফলভাবে সংরক্ষিত হয়েছে!
-                                    </div>
-                                    <button onclick="saveMarks()" style="padding: 15px 40px; background: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 18px; margin-top: 20px;">💾 Save Marks</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="info-card" style="margin-top: 30px;">
-                            <h3>📊 Student Information - ছাত্র-ছাত্রীদের তথ্য</h3>
-                            <div style="overflow-x: auto;">
-                                <table class="exam-table" id="studentInfoTable"></table>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="teacherContent"></div>
                 </div>
             </div>
 
             <!-- Guardian Page -->
             <div id="guardian" class="page">
-                <h2 class="page-title">Guardian Section</h2>
-                <div class="info-card">
-                    <h3>Guardian Portal</h3>
-                    <p>Parents can access student progress.</p>
+                <h2 class="page-title">Guardian Portal - অভিভাবক পোর্টাল</h2>
+                
+                <div class="login-form" id="guardianLogin">
+                    <h3>👨‍👩‍👧 Guardian Login</h3>
+                    <div class="form-group">
+                        <label>Student Roll Number (ছাত্রের রোল নম্বর)</label>
+                        <input type="number" id="guardianRoll" placeholder="Enter student roll number">
+                    </div>
+                    <div class="form-group">
+                        <label>Guardian Phone (অভিভাবক ফোন)</label>
+                        <input type="tel" id="guardianPhone" placeholder="01XXXXXXXXX">
+                    </div>
+                    <button class="submit-btn" onclick="guardianLogin()">🔐 Login</button>
+                </div>
+
+                <div id="guardianDashboard" style="display:none;">
+                    <div class="principal-card">
+                        <h3 id="guardianStudentName" style="color: white;">Student Information</h3>
+                        <p id="guardianStudentInfo" style="color: white;"></p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>🔔 Real-Time Notifications - রিয়েল-টাইম নোটিফিকেশন</h3>
+                        <div id="notificationList"></div>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <h4>📊 Attendance Rate</h4>
+                            <div class="stat-number" id="guardianAttendance">0%</div>
+                        </div>
+                        <div class="stat-card">
+                            <h4>📝 Average Marks</h4>
+                            <div class="stat-number" id="guardianAverage">0</div>
+                        </div>
+                    </div>
+
+                    <button class="submit-btn" onclick="guardianLogout()" style="margin-top: 20px;">🚪 Logout</button>
                 </div>
             </div>
 
@@ -839,90 +818,78 @@
                         <button data-sport="cricket">🏏 Cricket</button>
                         <button data-sport="badminton">🏸 Badminton</button>
                         <button data-sport="volleyball">🏐 Volleyball</button>
-                        <button data-sport="basketball">🏀 Basketball</button>
-                        <button data-sport="tabletennis">🏓 Table Tennis</button>
                     </div>
                 </div>
-
-                <div id="football" class="class-container" style="display:none;">
-                    <h3>⚽ Football Players</h3>
-                    <div class="student-list" id="footballList"></div>
-                </div>
-
-                <div id="cricket" class="class-container" style="display:none;">
-                    <h3>🏏 Cricket Players</h3>
-                    <div class="student-list" id="cricketList"></div>
-                </div>
-
-                <div id="badminton" class="class-container" style="display:none;">
-                    <h3>🏸 Badminton Players</h3>
-                    <div class="student-list" id="badmintonList"></div>
-                </div>
-
-                <div id="volleyball" class="class-container" style="display:none;">
-                    <h3>🏐 Volleyball Players</h3>
-                    <div class="student-list" id="volleyballList"></div>
-                </div>
-
-                <div id="basketball" class="class-container" style="display:none;">
-                    <h3>🏀 Basketball Players</h3>
-                    <div class="student-list" id="basketballList"></div>
-                </div>
-
-                <div id="tabletennis" class="class-container" style="display:none;">
-                    <h3>🏓 Table Tennis Players</h3>
-                    <div class="student-list" id="tabletennisList"></div>
-                </div>
+                <div id="sportsListContainer"></div>
             </div>
 
             <!-- Principal Page -->
             <div id="principal" class="page">
-                <h2 class="page-title">Principal's Message</h2>
-                <div class="info-card">
-                    <h3>From the Principal</h3>
-                    <p>Welcome message from our principal.</p>
+                <h2 class="page-title">Principal Dashboard - প্রধান শিক্ষক ড্যাশবোর্ড</h2>
+                
+                <div class="login-form" id="principalLogin">
+                    <h3>🔐 Principal Login</h3>
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" id="principalUsername" placeholder="Enter username">
+                        <small style="color: #999;">Demo: admin</small>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="principalPassword" placeholder="Enter password">
+                        <small style="color: #999;">Demo: admin123</small>
+                    </div>
+                    <button class="submit-btn" onclick="principalLogin()">🔐 Login</button>
                 </div>
+
+                <div id="principalDashboard" style="display:none;">
+                    <div class="principal-card">
+                        <h3 style="color: white;">👨‍💼 Welcome, Principal</h3>
+                        <p style="color: white;">Full System Access - সম্পূর্ণ সিস্টেম অ্যাক্সেস</p>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <h4>👨‍🎓 Total Students</h4>
+                            <div class="stat-number" id="totalStudents">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h4>👨‍🏫 Total Teachers</h4>
+                            <div class="stat-number" id="totalTeachers">5</div>
+                        </div>
+                        <div class="stat-card">
+                            <h4>📊 Average Attendance</h4>
+                            <div class="stat-number" id="avgAttendance">85%</div>
+                        </div>
+                        <div class="stat-card">
+                            <h4>🎓 Classes</h4>
+                            <div class="stat-number">7</div>
+                        </div>
+                    </div>
+
+                    <div class="class-selection">
+                        <h3>Quick Actions - দ্রুত কাজ</h3>
+                        <div class="class-buttons">
+                            <button onclick="showAddStudentForm()">➕ Add Student</button>
+                            <button onclick="viewAllStudents()">👥 All Students</button>
+                            <button onclick="viewAttendance()">📊 Attendance</button>
+                            <button onclick="viewResults()">📝 Results</button>
+                            <button onclick="principalLogout()">🚪 Logout</button>
+                        </div>
+                    </div>
+
+                    <div id="principalContent"></div>
+                </div>
+
+                <button class="add-student-btn" id="addStudentBtn" style="display:none;" onclick="showAddStudentForm()">+</button>
             </div>
 
             <!-- Result Page -->
             <div id="result" class="page">
                 <h2 class="page-title">Result Section - ফলাফল বিভাগ</h2>
-                
-                <div class="class-selection">
-                    <h3>Select Class - ক্লাস নির্বাচন করুন</h3>
-                    <div class="class-buttons">
-                        <button data-resultclass="class6">Class 6</button>
-                        <button data-resultclass="class7">Class 7</button>
-                        <button data-resultclass="class8">Class 8</button>
-                        <button data-resultclass="class9">Class 9</button>
-                        <button data-resultclass="class10">Class 10</button>
-                        <button data-resultclass="inter1">Inter 1st Year</button>
-                        <button data-resultclass="inter2">Inter 2nd Year</button>
-                    </div>
-                </div>
-
-                <div id="resultExamTypeSection" style="display:none;">
-                    <div class="class-selection">
-                        <h3>Select Exam - পরীক্ষা নির্বাচন করুন</h3>
-                        <div class="class-buttons">
-                            <button data-resultexam="midterm">📘 Mid-Term Exam (অর্ধ-বার্ষিক)</button>
-                            <button data-resultexam="annual">📗 Annual Exam (বার্ষিক)</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="resultDisplaySection" style="display:none;">
-                    <div class="info-card">
-                        <h3 id="resultTitle" style="text-align: center; color: #1e3c72; font-size: 28px; margin-bottom: 20px;"></h3>
-                        
-                        <div style="margin-bottom: 20px;">
-                            <input type="text" id="resultSearch" placeholder="🔍 Search by Roll Number or Name..." style="width: 100%; padding: 15px; font-size: 16px; border: 2px solid #3498db; border-radius: 10px;" onkeyup="searchResult()">
-                        </div>
-
-                        <div style="overflow-x: auto;">
-                            <table class="exam-table" id="resultTable"></table>
-                        </div>
-                    </div>
+                <div class="info-card">
+                    <h3>📊 Examination Results</h3>
+                    <p>Select class to view results</p>
                 </div>
             </div>
 
@@ -933,119 +900,40 @@
                 <div class="info-card">
                     <h3 style="text-align: center; color: #1e3c72; margin-bottom: 30px;">📝 Student Admission Application</h3>
                     
-                    <form id="admissionForm" onsubmit="submitAdmission(event)">
-                        <!-- Personal Information -->
+                    <div id="admissionForm">
                         <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 30px;">
                             <h4 style="color: #1e3c72; margin-bottom: 20px;">👤 Personal Information - ব্যক্তিগত তথ্য</h4>
                             
                             <div class="form-row">
                                 <div class="form-group">
                                     <label>Full Name (পুরো নাম) *</label>
-                                    <input type="text" name="fullName" required placeholder="Enter full name">
+                                    <input type="text" id="admName" placeholder="Enter full name">
                                 </div>
                                 <div class="form-group">
                                     <label>Date of Birth (জন্ম তারিখ) *</label>
-                                    <input type="date" name="dob" required>
+                                    <input type="date" id="admDOB">
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="form-group">
                                     <label>Gender (লিঙ্গ) *</label>
-                                    <select name="gender" required>
+                                    <select id="admGender">
                                         <option value="">Select Gender</option>
                                         <option value="male">Male (পুরুষ)</option>
                                         <option value="female">Female (মহিলা)</option>
-                                        <option value="other">Other (অন্যান্য)</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label>Blood Group (রক্তের গ্রুপ)</label>
-                                    <select name="bloodGroup">
+                                    <select id="admBlood">
                                         <option value="">Select Blood Group</option>
                                         <option value="A+">A+</option>
-                                        <option value="A-">A-</option>
                                         <option value="B+">B+</option>
-                                        <option value="B-">B-</option>
                                         <option value="O+">O+</option>
-                                        <option value="O-">O-</option>
                                         <option value="AB+">AB+</option>
-                                        <option value="AB-">AB-</option>
                                     </select>
                                 </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Address (ঠিকানা) *</label>
-                                <textarea name="address" required placeholder="Enter complete address"></textarea>
-                            </div>
-                        </div>
-
-                        <!-- Academic Information -->
-                        <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 30px;">
-                            <h4 style="color: #1e3c72; margin-bottom: 20px;">📚 Academic Information - শিক্ষাগত তথ্য</h4>
-                            
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label>Applying for Class (যে ক্লাসে ভর্তি হতে চান) *</label>
-                                    <select name="applyingClass" required>
-                                        <option value="">Select Class</option>
-                                        <option value="class6">Class 6</option>
-                                        <option value="class7">Class 7</option>
-                                        <option value="class8">Class 8</option>
-                                        <option value="class9">Class 9</option>
-                                        <option value="class10">Class 10</option>
-                                        <option value="inter1">Inter 1st Year</option>
-                                        <option value="inter2">Inter 2nd Year</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Previous School (পূর্ববর্তী স্কুল)</label>
-                                    <input type="text" name="previousSchool" placeholder="Enter previous school name">
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label>Last Class Completed (সর্বশেষ সম্পূর্ণ ক্লাস)</label>
-                                    <input type="text" name="lastClass" placeholder="e.g., Class 5">
-                                </div>
-                                <div class="form-group">
-                                    <label>Last Result/Grade (সর্বশেষ ফলাফল)</label>
-                                    <input type="text" name="lastResult" placeholder="e.g., A+, 85%">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Guardian Information -->
-                        <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 30px;">
-                            <h4 style="color: #1e3c72; margin-bottom: 20px;">👨‍👩‍👧 Guardian Information - অভিভাবক তথ্য</h4>
-                            
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label>Father's Name (পিতার নাম) *</label>
-                                    <input type="text" name="fatherName" required placeholder="Enter father's name">
-                                </div>
-                                <div class="form-group">
-                                    <label>Mother's Name (মাতার নাম) *</label>
-                                    <input type="text" name="motherName" required placeholder="Enter mother's name">
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label>Guardian's Phone (অভিভাবক ফোন নম্বর) *</label>
-                                    <input type="tel" name="guardianPhone" required placeholder="01XXXXXXXXX">
-                                </div>
-                                <div class="form-group">
-                                    <label>Guardian's Email (অভিভাবক ইমেইল)</label>
-                                    <input type="email" name="guardianEmail" placeholder="example@email.com">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Guardian's Occupation (অভিভাবকের পেশা)</label>
-                                <input type="text" name="guardianOccupation" placeholder="Enter occupation">
                             </div>
                         </div>
 
@@ -1053,10 +941,10 @@
                             ✅ Application submitted successfully! আপনার আবেদন সফলভাবে জমা হয়েছে!
                         </div>
 
-                        <button type="submit" class="submit-btn">
+                        <button class="submit-btn" onclick="submitAdmission()">
                             📤 Submit Application - আবেদন জমা দিন
                         </button>
-                    </form>
+                    </div>
                 </div>
             </div>
 
@@ -1064,32 +952,9 @@
             <div id="scholarship" class="page">
                 <h2 class="page-title">Scholarship Program - বৃত্তি কার্যক্রম</h2>
                 
-                <div class="info-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center; padding: 30px; margin-bottom: 30px;">
-                    <h3 style="font-size: 32px; margin-bottom: 15px; color: white;">🎓 Scholarship Eligibility Criteria</h3>
-                    <p style="font-size: 18px; color: white;">বৃত্তির যোগ্যতার মানদণ্ড</p>
-                    <p style="font-size: 16px; margin-top: 15px; color: white;">✓ Attendance: 70% or above (উপস্থিতি ৭০% বা তার বেশি)</p>
-                    <p style="font-size: 16px; color: white;">✓ Academic Performance: Average marks 80% or above (গড় নম্বর ৮০% বা তার বেশি)</p>
-                </div>
-
-                <div class="class-selection">
-                    <h3>Select Class - ক্লাস নির্বাচন করুন</h3>
-                    <div class="class-buttons">
-                        <button data-scholarshipclass="class6">Class 6</button>
-                        <button data-scholarshipclass="class7">Class 7</button>
-                        <button data-scholarshipclass="class8">Class 8</button>
-                        <button data-scholarshipclass="class9">Class 9</button>
-                        <button data-scholarshipclass="class10">Class 10</button>
-                        <button data-scholarshipclass="inter1">Inter 1st Year</button>
-                        <button data-scholarshipclass="inter2">Inter 2nd Year</button>
-                    </div>
-                </div>
-
-                <div id="scholarshipList" style="display:none;">
-                    <h3 style="color: #1e3c72; font-size: 24px; margin-bottom: 20px; text-align: center;">Scholarship Eligible Students - বৃত্তি প্রাপ্ত ছাত্র-ছাত্রী</h3>
-                    <div id="scholarshipEligibleList"></div>
-
-                    <h3 style="color: #e74c3c; font-size: 24px; margin: 30px 0 20px 0; text-align: center;">Not Eligible Students - বৃত্তি পাচ্ছেন না</h3>
-                    <div id="scholarshipNotEligibleList"></div>
+                <div class="info-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center; padding: 30px;">
+                    <h3 style="font-size: 32px; margin-bottom: 15px; color: white;">🎓 Scholarship Eligibility</h3>
+                    <p style="font-size: 18px; color: white;">Attendance: 70%+ | Average: 80%+</p>
                 </div>
             </div>
 
@@ -1097,106 +962,14 @@
             <div id="about" class="page">
                 <h2 class="page-title">About Us - আমাদের সম্পর্কে</h2>
                 
-                <!-- School Section -->
-                <div class="about-section">
-                    <h3>🏫 Our High School (Class 6-10)</h3>
-                    <p>
-                        আমাদের হাই স্কুল ১৯৮৫ সালে প্রতিষ্ঠিত হয়েছে এবং এটি এই অঞ্চলের অন্যতম প্রধান শিক্ষা প্রতিষ্ঠান। আমরা শিক্ষার মাধ্যমে শিক্ষার্থীদের জীবনে ইতিবাচক পরিবর্তন আনতে প্রতিশ্রুতিবদ্ধ। আমাদের স্কুলে ৬ষ্ঠ থেকে ১০ম শ্রেণী পর্যন্ত শিক্ষা প্রদান করা হয়।
-                    </p>
-                    <p>
-                        Our high school was established in 1985 and has been a cornerstone of education in this region. We are committed to providing quality education that transforms lives. We offer education from Class 6 to Class 10 with a focus on holistic development.
-                    </p>
-                    
-                    <h4 style="color: #1e3c72; margin: 20px 0 10px 0; font-size: 20px;">High School Facilities & Features:</h4>
-                    <ul>
-                        <li>অভিজ্ঞ ও দক্ষ শিক্ষক মন্ডলী - Experienced and qualified teaching staff</li>
-                        <li>আধুনিক শ্রেণিকক্ষ ও স্মার্ট বোর্ড - Modern classrooms with smart boards</li>
-                        <li>সমৃদ্ধ গ্রন্থাগার - Well-equipped library with 10,000+ books</li>
-                        <li>বিজ্ঞান পরীক্ষাগার (পদার্থবিজ্ঞান, রসায়ন, জীববিজ্ঞান) - Science laboratories for Physics, Chemistry, and Biology</li>
-                        <li>কম্পিউটার ল্যাব - Computer lab with 50+ computers</li>
-                        <li>খেলাধুলার সুবিধা - Sports facilities including football, cricket, volleyball courts</li>
-                        <li>সাংস্কৃতিক কার্যক্রম - Cultural programs and extracurricular activities</li>
-                        <li>বৃত্তি কার্যক্রম - Merit-based scholarship programs</li>
-                        <li>নিয়মিত অভিভাবক-শিক্ষক সভা - Regular parent-teacher meetings</li>
-                        <li>বিনামূল্যে শিক্ষা সামগ্রী বিতরণ - Free study materials for economically disadvantaged students</li>
-                    </ul>
-
-                    <h4 style="color: #1e3c72; margin: 20px 0 10px 0; font-size: 20px;">Academic Achievements:</h4>
-                    <ul>
-                        <li>SSC পরীক্ষায় ৯৫% পাস রেট - 95% pass rate in SSC examinations</li>
-                        <li>গত ৫ বছরে ১২০+ জন GPA-5 প্রাপ্ত - 120+ students achieved GPA-5 in last 5 years</li>
-                        <li>জেলা পর্যায়ে বিভিন্ন প্রতিযোগিতায় চ্যাম্পিয়ন - District level champions in various competitions</li>
-                        <li>জাতীয় পর্যায়ে বিজ্ঞান অলিম্পিয়াডে অংশগ্রহণ - Participation in national science olympiads</li>
-                    </ul>
+                <div class="info-card">
+                    <h3>🏫 Our School</h3>
+                    <p>আমাদের স্কুল ১৯৮৫ সালে প্রতিষ্ঠিত হয়েছে এবং এটি এই অঞ্চলের অন্যতম প্রধান শিক্ষা প্রতিষ্ঠান।</p>
+                    <p>Our school was established in 1985 and has been a cornerstone of education in this region.</p>
                 </div>
 
-                <!-- College Section -->
-                <div class="about-section">
-                    <h3>🎓 Our College (Inter 1st & 2nd Year)</h3>
-                    <p>
-                        আমাদের কলেজ বিভাগ ২০০৫ সালে যাত্রা শুরু করে। এখানে বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা এবং কারিগরি শিক্ষা (ইঞ্জিনিয়ারিং) বিভাগ রয়েছে। আমরা শিক্ষার্থীদের উচ্চশিক্ষা ও ক্যারিয়ারের জন্য প্রস্তুত করি।
-                    </p>
-                    <p>
-                        Our college was established in 2005, offering programs in Science, Arts, Commerce, and Technical Education (Engineering). We prepare students for higher education and successful careers through quality education and practical training.
-                    </p>
-                    
-                    <h4 style="color: #1e3c72; margin: 20px 0 10px 0; font-size: 20px;">College Departments:</h4>
-                    <ul>
-                        <li>🔬 বিজ্ঞান বিভাগ - Science Group (Physics, Chemistry, Biology, Mathematics)</li>
-                        <li>📚 মানবিক বিভাগ - Arts Group (Bangla, English, History, Civics, Economics)</li>
-                        <li>💼 ব্যবসায় শিক্ষা - Commerce Group (Accounting, Finance, Business Studies)</li>
-                        <li>🏗️ সিভিল ইঞ্জিনিয়ারিং - Civil Engineering</li>
-                        <li>💻 কম্পিউটার ইঞ্জিনিয়ারিং - Computer Engineering</li>
-                        <li>⚙️ মেকানিক্যাল ইঞ্জিনিয়ারিং - Mechanical Engineering</li>
-                        <li>⚡ ইলেকট্রিক্যাল ইঞ্জিনিয়ারিং - Electrical Engineering</li>
-                    </ul>
-
-                    <h4 style="color: #1e3c72; margin: 20px 0 10px 0; font-size: 20px;">College Facilities:</h4>
-                    <ul>
-                        <li>উন্নত ইঞ্জিনিয়ারিং ওয়ার্কশপ - Advanced engineering workshops</li>
-                        <li>ডিজিটাল ল্যাবরেটরি - Digital laboratories for practical training</li>
-                        <li>শীতাতপ নিয়ন্ত্রিত অডিটোরিয়াম - Air-conditioned auditorium (capacity 500)</li>
-                        <li>ক্যান্টিন ও ক্যাফেটেরিয়া - Canteen and cafeteria facilities</li>
-                        <li>হোস্টেল সুবিধা - Hostel facilities for outstation students</li>
-                        <li>ক্যারিয়ার কাউন্সেলিং সেন্টার - Career counseling center</li>
-                        <li>ইন্ডাস্ট্রিয়াল ট্রেনিং - Industrial training and internship programs</li>
-                        <li>জব প্লেসমেন্ট সহায়তা - Job placement assistance</li>
-                    </ul>
-
-                    <h4 style="color: #1e3c72; margin: 20px 0 10px 0; font-size: 20px;">College Achievements:</h4>
-                    <ul>
-                        <li>HSC পরীক্ষায় ৯২% পাস রেট - 92% pass rate in HSC examinations</li>
-                        <li>ডিপ্লোমা ইঞ্জিনিয়ারিং এ ৯৮% পাস রেট - 98% pass rate in Diploma Engineering</li>
-                        <li>শীর্ষ বিশ্ববিদ্যালয়ে ভর্তি হার ৭৫% - 75% students admitted to top universities</li>
-                        <li>বিভিন্ন প্রতিষ্ঠানে ১০০+ শিক্ষার্থী চাকরি প্রাপ্তি - 100+ students placed in reputed companies</li>
-                        <li>আন্তর্জাতিক প্রজেক্ট প্রতিযোগিতায় অংশগ্রহণ - Participation in international project competitions</li>
-                    </ul>
-                </div>
-
-                <!-- Vision & Mission -->
-                <div class="about-section">
-                    <h3>🎯 Our Vision & Mission</h3>
-                    <p style="font-weight: bold; color: #1e3c72; font-size: 18px;">Vision (দৃষ্টিভঙ্গি):</p>
-                    <p>
-                        আমাদের লক্ষ্য হলো এমন একটি শিক্ষা প্রতিষ্ঠান গড়ে তোলা যেখানে প্রতিটি শিক্ষার্থী তাদের সম্পূর্ণ সম্ভাবনা বিকশিত করতে পারে এবং একজন দায়িত্বশীল নাগরিক হিসেবে গড়ে উঠতে পারে।
-                    </p>
-                    <p>
-                        To create an educational institution where every student can develop their full potential and grow as responsible citizens contributing to society.
-                    </p>
-
-                    <p style="font-weight: bold; color: #1e3c72; font-size: 18px; margin-top: 20px;">Mission (লক্ষ্য):</p>
-                    <ul>
-                        <li>মানসম্মত শিক্ষা প্রদান - Provide quality education to all students</li>
-                        <li>নৈতিক মূল্যবোধ গড়ে তোলা - Develop strong moral values and ethics</li>
-                        <li>আধুনিক প্রযুক্তি ভিত্তিক শিক্ষা - Implement technology-based modern education</li>
-                        <li>সৃজনশীলতা ও নেতৃত্বের বিকাশ - Foster creativity and leadership skills</li>
-                        <li>সামাজিক দায়বদ্ধতা তৈরি - Create socially responsible individuals</li>
-                    </ul>
-                </div>
-
-                <!-- Contact Information -->
-                <div class="about-section">
-                    <h3>📞 Contact Information - যোগাযোগ</h3>
+                <div class="info-card">
+                    <h3>📞 Contact Information</h3>
                     <div class="detail-row">
                         <span class="detail-label">Address:</span>
                         <span class="detail-value">123 Education Road, Khulna, Bangladesh</span>
@@ -1205,181 +978,121 @@
                         <span class="detail-label">Phone:</span>
                         <span class="detail-value">+880-XXXX-XXXXXX</span>
                     </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Email:</span>
-                        <span class="detail-value">info@ourschool.edu.bd</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Website:</span>
-                        <span class="detail-value">www.ourschool.edu.bd</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Office Hours:</span>
-                        <span class="detail-value">Sunday - Thursday: 8:00 AM - 4:00 PM</span>
-                    </div>
                 </div>
             </div>
         </div>
 
         <div class="footer">
-            <p>&copy; 2024 School Website. All Rights Reserved.</p>
+            <p>&copy; 2024 School Management System. All Rights Reserved.</p>
             <p>Developed with ❤️ for Quality Education</p>
         </div>
     </div>
 
+    <!-- Add Student Modal -->
+    <div id="addStudentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAddStudentModal()">&times;</span>
+            <h2 style="text-align: center; color: #1e3c72;">➕ Add New Student</h2>
+            
+            <div class="form-group">
+                <label>Student Name (ছাত্রের নাম) *</label>
+                <input type="text" id="newStudentName" placeholder="Enter student name">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Class (ক্লাস) *</label>
+                    <select id="newStudentClass">
+                        <option value="">Select Class</option>
+                        <option value="class6">Class 6</option>
+                        <option value="class7">Class 7</option>
+                        <option value="class8">Class 8</option>
+                        <option value="class9">Class 9</option>
+                        <option value="class10">Class 10</option>
+                        <option value="inter1">Inter 1st Year</option>
+                        <option value="inter2">Inter 2nd Year</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Section (শাখা) *</label>
+                    <input type="text" id="newStudentSection" placeholder="A/B/Science/Commerce">
+                </div>
+            </div>
+
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                <h4 style="color: #1e3c72; text-align: center; margin-bottom: 20px;">👆 Fingerprint Registration - ফিঙ্গারপ্রিন্ট নিবন্ধন</h4>
+                
+                <div style="text-align: center;">
+                    <p style="margin-bottom: 15px; color: #555;">Right Hand (ডান হাত) - 2 Fingers</p>
+                    <div style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px;">
+                        <div class="fingerprint-scanner" id="rightFinger1" onclick="scanFingerprint('right1')">
+                            <span id="rightFinger1Status">👆</span>
+                        </div>
+                        <div class="fingerprint-scanner" id="rightFinger2" onclick="scanFingerprint('right2')">
+                            <span id="rightFinger2Status">👆</span>
+                        </div>
+                    </div>
+
+                    <p style="margin-bottom: 15px; color: #555;">Left Hand (বাম হাত) - 2 Fingers</p>
+                    <div style="display: flex; justify-content: center; gap: 20px;">
+                        <div class="fingerprint-scanner" id="leftFinger1" onclick="scanFingerprint('left1')">
+                            <span id="leftFinger1Status">👆</span>
+                        </div>
+                        <div class="fingerprint-scanner" id="leftFinger2" onclick="scanFingerprint('left2')">
+                            <span id="leftFinger2Status">👆</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="fingerprintStatus" class="success-message">
+                ✅ All fingerprints registered successfully!
+            </div>
+
+            <button class="submit-btn" onclick="saveNewStudent()">💾 Save Student</button>
+        </div>
+    </div>
+
     <script>
-        // Student Database
+        // Database
         const studentDatabase = {
             class6: [
-                { roll: 1, name: "আহমেদ রাফি", section: "A", totalDays: 100, presentDays: 92, exams: [{name: "1st Term", marks: 85}], assignments: 15, assignmentsSubmitted: 14 },
-                { roll: 2, name: "ফাতিমা আক্তার", section: "A", totalDays: 100, presentDays: 95, exams: [{name: "1st Term", marks: 92}], assignments: 15, assignmentsSubmitted: 15 },
-                { roll: 3, name: "রাকিব হাসান", section: "B", totalDays: 100, presentDays: 65, exams: [{name: "1st Term", marks: 75}], assignments: 15, assignmentsSubmitted: 12 },
-                { roll: 4, name: "সুমাইয়া ইসলাম", section: "A", totalDays: 100, presentDays: 88, exams: [{name: "1st Term", marks: 90}], assignments: 15, assignmentsSubmitted: 15 },
-                { roll: 5, name: "তানভীর আহমেদ", section: "B", totalDays: 100, presentDays: 78, exams: [{name: "1st Term", marks: 82}], assignments: 15, assignmentsSubmitted: 13 },
-                { roll: 6, name: "সাবিনা খাতুন", section: "A", totalDays: 100, presentDays: 90, exams: [{name: "1st Term", marks: 88}], assignments: 15, assignmentsSubmitted: 14 },
-                { roll: 7, name: "মাহমুদ রেজা", section: "B", totalDays: 100, presentDays: 72, exams: [{name: "1st Term", marks: 80}], assignments: 15, assignmentsSubmitted: 13 },
-                { roll: 8, name: "নাফিসা নওরীন", section: "A", totalDays: 100, presentDays: 94, exams: [{name: "1st Term", marks: 91}], assignments: 15, assignmentsSubmitted: 15 },
-                { roll: 9, name: "রিফাত করিম", section: "B", totalDays: 100, presentDays: 86, exams: [{name: "1st Term", marks: 84}], assignments: 15, assignmentsSubmitted: 14 },
-                { roll: 10, name: "তাসনিম জাহান", section: "A", totalDays: 100, presentDays: 91, exams: [{name: "1st Term", marks: 89}], assignments: 15, assignmentsSubmitted: 15 }
+                { roll: 1, name: "আহমেদ রাফি", section: "A", totalDays: 100, presentDays: 92, exams: [{name: "1st Term", marks: 85}], guardianPhone: "01712345678" },
+                { roll: 2, name: "ফাতিমা আক্তার", section: "A", totalDays: 100, presentDays: 95, exams: [{name: "1st Term", marks: 92}], guardianPhone: "01812345678" },
+                { roll: 3, name: "রাকিব হাসান", section: "B", totalDays: 100, presentDays: 65, exams: [{name: "1st Term", marks: 75}], guardianPhone: "01912345678" }
             ],
             class7: [
-                { roll: 1, name: "নাবিলা খান", section: "A", totalDays: 100, presentDays: 91, exams: [{name: "1st Term", marks: 88}], assignments: 15, assignmentsSubmitted: 14 },
-                { roll: 2, name: "সাকিব আল হাসান", section: "B", totalDays: 100, presentDays: 85, exams: [{name: "1st Term", marks: 86}], assignments: 15, assignmentsSubmitted: 15 },
-                { roll: 3, name: "জান্নাত আরা", section: "A", totalDays: 100, presentDays: 68, exams: [{name: "1st Term", marks: 70}], assignments: 15, assignmentsSubmitted: 11 },
-                { roll: 4, name: "ইমরান হোসেন", section: "B", totalDays: 100, presentDays: 93, exams: [{name: "1st Term", marks: 91}], assignments: 15, assignmentsSubmitted: 15 },
-                { roll: 5, name: "রুমানা আক্তার", section: "A", totalDays: 100, presentDays: 89, exams: [{name: "1st Term", marks: 87}], assignments: 15, assignmentsSubmitted: 14 },
-                { roll: 6, name: "শাহরিয়ার হোসেন", section: "B", totalDays: 100, presentDays: 75, exams: [{name: "1st Term", marks: 78}], assignments: 15, assignmentsSubmitted: 12 },
-                { roll: 7, name: "মারিয়া সুলতানা", section: "A", totalDays: 100, presentDays: 96, exams: [{name: "1st Term", marks: 94}], assignments: 15, assignmentsSubmitted: 15 },
-                { roll: 8, name: "তৌহিদ আহমেদ", section: "B", totalDays: 100, presentDays: 82, exams: [{name: "1st Term", marks: 83}], assignments: 15, assignmentsSubmitted: 13 },
-                { roll: 9, name: "সামিয়া খাতুন", section: "A", totalDays: 100, presentDays: 90, exams: [{name: "1st Term", marks: 88}], assignments: 15, assignmentsSubmitted: 14 },
-                { roll: 10, name: "নাজমুল হক", section: "B", totalDays: 100, presentDays: 88, exams: [{name: "1st Term", marks: 86}], assignments: 15, assignmentsSubmitted: 14 }
+                { roll: 1, name: "নাবিলা খান", section: "A", totalDays: 100, presentDays: 91, exams: [{name: "1st Term", marks: 88}], guardianPhone: "01612345678" }
             ],
-            class8: [
-                { roll: 1, name: "মাহিয়া মাহতাব", section: "A", totalDays: 100, presentDays: 89, exams: [{name: "1st Term", marks: 87}], assignments: 15, assignmentsSubmitted: 14 },
-                { roll: 2, name: "রিয়াজ উদ্দিন", section: "B", totalDays: 100, presentDays: 72, exams: [{name: "1st Term", marks: 78}], assignments: 15, assignmentsSubmitted: 12 },
-                { roll: 3, name: "তাসনিম জাহান", section: "A", totalDays: 100, presentDays: 94, exams: [{name: "1st Term", marks: 93}], assignments: 15, assignmentsSubmitted: 15 },
-                { roll: 4, name: "ফয়সাল আহমেদ", section: "B", totalDays: 100, presentDays: 86, exams: [{name: "1st Term", marks: 85}], assignments: 15, assignmentsSubmitted: 14 },
-                { roll: 5, name: "সুমি আক্তার", section: "A", totalDays: 100, presentDays: 92, exams: [{name: "1st Term", marks: 90}], assignments: 15, assignmentsSubmitted: 15 },
-                { roll: 6, name: "আরিফুল ইসলাম", section: "B", totalDays: 100, presentDays: 77, exams: [{name: "1st Term", marks: 79}], assignments: 15, assignmentsSubmitted: 13 },
-                { roll: 7, name: "নাদিয়া সুলতানা", section: "A", totalDays: 100, presentDays: 95, exams: [{name: "1st Term", marks: 92}], assignments: 15, assignmentsSubmitted: 15 },
-                { roll: 8, name: "কামরুল হাসান", section: "B", totalDays: 100, presentDays: 84, exams: [{name: "1st Term", marks: 84}], assignments: 15, assignmentsSubmitted: 14 },
-                { roll: 9, name: "রিনা খাতুন", section: "A", totalDays: 100, presentDays: 91, exams: [{name: "1st Term", marks: 89}], assignments: 15, assignmentsSubmitted: 15 },
-                { roll: 10, name: "সাজিদ হোসেন", section: "B", totalDays: 100, presentDays: 80, exams: [{name: "1st Term", marks: 82}], assignments: 15, assignmentsSubmitted: 13 }
-            ],
-            class9: [
-                { roll: 1, name: "আরিফুর রহমান", section: "Science", totalDays: 100, presentDays: 90, exams: [{name: "1st Term", marks: 89}], assignments: 15, assignmentsSubmitted: 15 },
-                { roll: 2, name: "নুসরাত জাহান", section: "Science", totalDays: 100, presentDays: 96, exams: [{name: "1st Term", marks: 94}], assignments: 15, assignmentsSubmitted: 15 },
-                { roll: 3, name: "শাহরিয়ার কবির", section: "Commerce", totalDays: 100, presentDays: 66, exams: [{name: "1st Term", marks: 71}], assignments: 15, assignmentsSubmitted: 10 },
-                { roll: 4, name: "সাদিয়া ইসলাম", section: "Science", totalDays: 100, presentDays: 93, exams: [{name: "1st Term", marks: 91}], assignments: 15, assignmentsSubmitted: 15 },
-                { roll: 5, name: "তানজিল আহমেদ", section: "Commerce", totalDays: 100, presentDays: 78, exams: [{name: "1st Term", marks: 80}], assignments: 15, assignmentsSubmitted: 13 },
-                { roll: 6, name: "মিম আক্তার", section: "Science", totalDays: 100, presentDays: 88, exams: [{name: "1st Term", marks: 87}], assignments: 15, assignmentsSubmitted: 14 },
-                { roll: 7, name: "রাশেদুল করিম", section: "Commerce", totalDays: 100, presentDays: 82, exams: [{name: "1st Term", marks: 83}], assignments: 15, assignmentsSubmitted: 14 },
-                { roll: 8, name: "নিপা খাতুন", section: "Science", totalDays: 100, presentDays: 94, exams: [{name: "1st Term", marks: 92}], assignments: 15, assignmentsSubmitted: 15 },
-                { roll: 9, name: "সাইফুল ইসলাম", section: "Commerce", totalDays: 100, presentDays: 75, exams: [{name: "1st Term", marks: 77}], assignments: 15, assignmentsSubmitted: 12 },
-                { roll: 10, name: "তানিয়া সুলতানা", section: "Science", totalDays: 100, presentDays: 91, exams: [{name: "1st Term", marks: 90}], assignments: 15, assignmentsSubmitted: 15 }
-            ],
-            class10: [
-                { roll: 1, name: "রিফাত জাহান", section: "Science", totalDays: 100, presentDays: 92, exams: [{name: "1st Term", marks: 90}], assignments: 15, assignmentsSubmitted: 15 },
-                { roll: 2, name: "মাহমুদুল হাসান", section: "Science", totalDays: 100, presentDays: 87, exams: [{name: "1st Term", marks: 85}], assignments: 15, assignmentsSubmitted: 14 },
-                { roll: 3, name: "সাদিয়া আফরিন", section: "Commerce", totalDays: 100, presentDays: 74, exams: [{name: "1st Term", marks: 80}], assignments: 15, assignmentsSubmitted: 13 },
-                { roll: 4, name: "নাহিয়ান ফয়সাল", section: "Science", totalDays: 100, presentDays: 95, exams: [{name: "1st Term", marks: 93}], assignments: 15, assignmentsSubmitted: 15 },
-                { roll: 5, name: "রাবেয়া খাতুন", section: "Commerce", totalDays: 100, presentDays: 80, exams: [{name: "1st Term", marks: 82}], assignments: 15, assignmentsSubmitted: 14 },
-                { roll: 6, name: "সাকিব হাসান", section: "Science", totalDays: 100, presentDays: 89, exams: [{name: "1st Term", marks: 88}], assignments: 15, assignmentsSubmitted: 15 },
-                { roll: 7, name: "মৌসুমী আক্তার", section: "Commerce", totalDays: 100, presentDays: 77, exams: [{name: "1st Term", marks: 79}], assignments: 15, assignmentsSubmitted: 13 },
-                { roll: 8, name: "তৌফিক রহমান", section: "Science", totalDays: 100, presentDays: 93, exams: [{name: "1st Term", marks: 91}], assignments: 15, assignmentsSubmitted: 15 },
-                { roll: 9, name: "সুমনা খান", section: "Commerce", totalDays: 100, presentDays: 72, exams: [{name: "1st Term", marks: 76}], assignments: 15, assignmentsSubmitted: 12 },
-                { roll: 10, name: "রাহুল আহমেদ", section: "Science", totalDays: 100, presentDays: 90, exams: [{name: "1st Term", marks: 89}], assignments: 15, assignmentsSubmitted: 15 }
-            ],
-            inter1: [
-                { roll: 1, name: "তানজিম আহমেদ", section: "Science", totalDays: 100, presentDays: 91, exams: [{name: "1st Semester", marks: 88}], assignments: 15, assignmentsSubmitted: 15 },
-                { roll: 2, name: "মারিয়া সুলতানা", section: "Science", totalDays: 100, presentDays: 95, exams: [{name: "1st Semester", marks: 93}], assignments: 15, assignmentsSubmitted: 15 },
-                { roll: 3, name: "রাশেদুল ইসলাম", section: "Commerce", totalDays: 100, presentDays: 69, exams: [{name: "1st Semester", marks: 75}], assignments: 15, assignmentsSubmitted: 11 },
-                { roll: 4, name: "নাজিয়া খাতুন", section: "Science", totalDays: 100, presentDays: 92, exams: [{name: "1st Semester", marks: 90}], assignments: 15, assignmentsSubmitted: 15 },
-                { roll: 5, name: "আসিফ মাহমুদ", section: "Commerce", totalDays: 100, presentDays: 76, exams: [{name: "1st Semester", marks: 78}], assignments: 15, assignmentsSubmitted: 13 },
-                { roll: 6, name: "সামিয়া রহমান", section: "Science", totalDays: 100, presentDays: 94, exams: [{name: "1st Semester", marks: 92}], assignments: 15, assignmentsSubmitted: 15 },
-                { roll: 7, name: "মাহফুজ হাসান", section: "Arts", totalDays: 100, presentDays: 73, exams: [{name: "1st Semester", marks: 76}], assignments: 15, assignmentsSubmitted: 12 },
-                { roll: 8, name: "রিয়া আফরোজ", section: "Science", totalDays: 100, presentDays: 89, exams: [{name: "1st Semester", marks: 87}], assignments: 15, assignmentsSubmitted: 14 },
-                { roll: 9, name: "শাহরিয়ার কবির", section: "Commerce", totalDays: 100, presentDays: 81, exams: [{name: "1st Semester", marks: 82}], assignments: 15, assignmentsSubmitted: 14 },
-                { roll: 10, name: "নুসরাত জাহান", section: "Science", totalDays: 100, presentDays: 96, exams: [{name: "1st Semester", marks: 94}], assignments: 15, assignmentsSubmitted: 15 }
-            ],
-            inter2: [
-                { roll: 1, name: "মোঃ মোবারক হোসেন মুন্না", section: "Civil Engineering", totalDays: 100, presentDays: 93, exams: [{name: "1st Semester", marks: 91}], assignments: 15, assignmentsSubmitted: 15 },
-                { roll: 2, name: "ফাহিম আহমেদ", section: "Science", totalDays: 100, presentDays: 89, exams: [{name: "1st Semester", marks: 87}], assignments: 15, assignmentsSubmitted: 14 },
-                { roll: 3, name: "নাফিসা তাবাসসুম", section: "Arts", totalDays: 100, presentDays: 71, exams: [{name: "1st Semester", marks: 79}], assignments: 15, assignmentsSubmitted: 12 },
-                { roll: 4, name: "তামিম ইকবাল", section: "Science", totalDays: 100, presentDays: 94, exams: [{name: "1st Semester", marks: 92}], assignments: 15, assignmentsSubmitted: 15 },
-                { roll: 5, name: "সাবিহা আক্তার", section: "Commerce", totalDays: 100, presentDays: 78, exams: [{name: "1st Semester", marks: 80}], assignments: 15, assignmentsSubmitted: 13 },
-                { roll: 6, name: "নাহিদ হাসান", section: "Science", totalDays: 100, presentDays: 91, exams: [{name: "1st Semester", marks: 90}], assignments: 15, assignmentsSubmitted: 15 },
-                { roll: 7, name: "তাসনিয়া করিম", section: "Arts", totalDays: 100, presentDays: 74, exams: [{name: "1st Semester", marks: 77}], assignments: 15, assignmentsSubmitted: 12 },
-                { roll: 8, name: "রাফিউল ইসলাম", section: "Science", totalDays: 100, presentDays: 88, exams: [{name: "1st Semester", marks: 86}], assignments: 15, assignmentsSubmitted: 14 },
-                { roll: 9, name: "মিথিলা আক্তার", section: "Commerce", totalDays: 100, presentDays: 82, exams: [{name: "1st Semester", marks: 83}], assignments: 15, assignmentsSubmitted: 14 },
-                { roll: 10, name: "সাকিব আল মামুন", section: "Science", totalDays: 100, presentDays: 95, exams: [{name: "1st Semester", marks: 93}], assignments: 15, assignmentsSubmitted: 15 }
-            ]
+            class8: [],
+            class9: [],
+            class10: [],
+            inter1: [],
+            inter2: []
         };
 
-        // Sports Database
+        const teacherDatabase = {
+            bangla: { name: "আব্দুল করিম স্যার", subject: "বাংলা (Bangla)" },
+            english: { name: "সালমা বেগম ম্যাডাম", subject: "ইংরেজি (English)" },
+            math: { name: "রফিকুল ইসলাম স্যার", subject: "গণিত (Mathematics)" },
+            science: { name: "নাজমা আক্তার ম্যাডাম", subject: "বিজ্ঞান (Science)" },
+            social: { name: "কামরুল হাসান স্যার", subject: "সামাজিক বিজ্ঞান" }
+        };
+
         const sportsDatabase = {
             football: [
-                { name: "মোঃ মোবারক হোসেন মুন্না", class: "Inter 2nd Year", department: "Civil Engineering", position: "Forward", achievements: "Inter College Champion 2024" },
-                { name: "রাফিউল ইসলাম", class: "Class 10", section: "Science", position: "Goalkeeper", achievements: "Best Goalkeeper 2024" },
-                { name: "তানভীর আহমেদ", class: "Class 9", section: "Science", position: "Midfielder", achievements: "District Level Player" }
+                { name: "মোঃ মোবারক হোসেন মুন্না", class: "Inter 2nd", position: "Forward" }
             ],
-            cricket: [
-                { name: "তামিম ইকবাল", class: "Inter 2nd Year", department: "Science", position: "Batsman", achievements: "Century Maker" },
-                { name: "সাকিব আল মামুন", class: "Class 10", section: "Science", position: "All-rounder", achievements: "Man of the Match 5 times" },
-                { name: "মাহমুদুল হাসান", class: "Class 9", section: "Science", position: "Bowler", achievements: "5 Wicket Haul" }
-            ],
-            badminton: [
-                { name: "নুসরাত জাহান", class: "Inter 1st Year", department: "Science", position: "Singles", achievements: "District Champion 2024" },
-                { name: "সামিয়া রহমান", class: "Class 9", section: "Science", position: "Singles", achievements: "School Champion" },
-                { name: "রিয়া আফরোজ", class: "Inter 2nd Year", department: "Science", position: "Doubles", achievements: "Regional Runner-up" }
-            ],
-            volleyball: [
-                { name: "রাশেদুল করিম", class: "Inter 1st Year", department: "Commerce", position: "Spiker", achievements: "Best Spiker 2024" },
-                { name: "কামরুল হাসান", class: "Class 9", section: "Commerce", position: "Setter", achievements: "Team Captain" },
-                { name: "তৌফিক রহমান", class: "Class 10", section: "Science", position: "Blocker", achievements: "Defensive Player Award" }
-            ],
-            basketball: [
-                { name: "নাহিয়ান ফয়সাল", class: "Class 10", section: "Science", position: "Point Guard", achievements: "MVP Award 2024" },
-                { name: "রাহুল আহমেদ", class: "Inter 1st Year", department: "Science", position: "Shooting Guard", achievements: "Three-Point Champion" },
-                { name: "তানজিম আহমেদ", class: "Class 9", section: "Science", position: "Center", achievements: "Rebound King" }
-            ],
-            tabletennis: [
-                { name: "নাফিসা তাবাসসুম", class: "Inter 2nd Year", department: "Arts", position: "Singles", achievements: "Regional Champion" },
-                { name: "সাদিয়া ইসলাম", class: "Class 9", section: "Science", position: "Singles", achievements: "School Champion 2024" },
-                { name: "মিম আক্তার", class: "Class 10", section: "Science", position: "Doubles", achievements: "District Runner-up" }
-            ]
+            cricket: [],
+            badminton: [],
+            volleyball: []
         };
 
-        // Teacher Database
-        const teacherDatabase = {
-            bangla: { name: "আব্দুল করিম স্যার", subject: "বাংলা (Bangla)", classes: ['class6', 'class7', 'class8', 'class9', 'class10', 'inter1', 'inter2'] },
-            english: { name: "সালমা বেগম ম্যাডাম", subject: "ইংরেজি (English)", classes: ['class6', 'class7', 'class8', 'class9', 'class10', 'inter1', 'inter2'] },
-            math: { name: "রফিকুল ইসলাম স্যার", subject: "গণিত (Mathematics)", classes: ['class6', 'class7', 'class8', 'class9', 'class10', 'inter1', 'inter2'] },
-            science: { name: "নাজমা আক্তার ম্যাডাম", subject: "বিজ্ঞান (Science)", classes: ['class6', 'class7', 'class8', 'class9', 'class10', 'inter1', 'inter2'] },
-            social: { name: "কামরুল হাসান স্যার", subject: "সামাজিক বিজ্ঞান (Social Science)", classes: ['class6', 'class7', 'class8', 'class9', 'class10', 'inter1', 'inter2'] },
-            physics: { name: "ড. আনিসুর রহমান", subject: "পদার্থবিজ্ঞান (Physics)", classes: ['class9', 'class10', 'inter1', 'inter2'] },
-            chemistry: { name: "শাহানা পারভীন ম্যাডাম", subject: "রসায়ন (Chemistry)", classes: ['class9', 'class10', 'inter1', 'inter2'] },
-            biology: { name: "মাহমুদা বেগম ম্যাডাম", subject: "জীববিজ্ঞান (Biology)", classes: ['class9', 'class10', 'inter1', 'inter2'] },
-            ict: { name: "তানভীর আহমেদ স্যার", subject: "আইসিটি (ICT)", classes: ['class6', 'class7', 'class8', 'class9', 'class10', 'inter1', 'inter2'] },
-            civil: { name: "ইঞ্জিনিয়ার মোস্তফা কামাল", subject: "Civil Engineering", classes: ['class9', 'class10', 'inter1', 'inter2'] },
-            computer: { name: "ইঞ্জিনিয়ার রাহাত হোসেন", subject: "Computer Engineering", classes: ['class9', 'class10', 'inter1', 'inter2'] },
-            mechanical: { name: "ইঞ্জিনিয়ার শফিকুল ইসলাম", subject: "Mechanical Engineering", classes: ['class9', 'class10', 'inter1', 'inter2'] },
-            electrical: { name: "ইঞ্জিনিয়ার নাসরিন আক্তার", subject: "Electrical Engineering", classes: ['class9', 'class10', 'inter1', 'inter2'] }
-        };
+        let currentStudent = null;
+        let notifications = [];
+        let fingerprintData = {right1: false, right2: false, left1: false, left2: false};
 
-        // Global variables
-        let currentClass = '';
-        let currentSport = '';
-        let currentTeacher = null;
-        let currentTeacherCode = '';
-        let currentTeacherClass = '';
-        let currentExamType = '';
-        let teacherMarksData = {};
-        let currentResultClass = '';
-        let currentResultExam = '';
-        let currentScholarshipClass = '';
-
-        // Initialize
+        // Navigation
         document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(link => {
@@ -1394,13 +1107,7 @@
 
             document.querySelectorAll('button[data-class]').forEach(btn => {
                 btn.addEventListener('click', function() {
-                    showClass(this.getAttribute('data-class'));
-                });
-            });
-
-            document.querySelectorAll('button[data-sport]').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    showSport(this.getAttribute('data-sport'));
+                    loadStudentClass(this.getAttribute('data-class'));
                 });
             });
 
@@ -1410,32 +1117,14 @@
                 });
             });
 
-            document.querySelectorAll('button[data-resultclass]').forEach(btn => {
+            document.querySelectorAll('button[data-sport]').forEach(btn => {
                 btn.addEventListener('click', function() {
-                    selectResultClass(this.getAttribute('data-resultclass'));
+                    loadSport(this.getAttribute('data-sport'));
                 });
             });
 
-            document.querySelectorAll('button[data-resultexam]').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    selectResultExam(this.getAttribute('data-resultexam'));
-                });
-            });
-
-            document.querySelectorAll('button[data-scholarshipclass]').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    showScholarshipList(this.getAttribute('data-scholarshipclass'));
-                });
-            });
-
-            document.addEventListener('click', function(e) {
-                if (e.target.matches('button[data-tclass]')) {
-                    loadTeacherClass(e.target.getAttribute('data-tclass'));
-                }
-                if (e.target.matches('button[data-examtype]')) {
-                    selectExamType(e.target.getAttribute('data-examtype'));
-                }
-            });
+            updateTotalStudents();
+            simulateAttendance();
         });
 
         function showPage(pageId) {
@@ -1445,85 +1134,38 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function showClass(className) {
-            document.querySelectorAll('#student .class-container').forEach(c => c.style.display = 'none');
-            const container = document.getElementById(className);
-            if (container) {
-                container.style.display = 'block';
-                currentClass = className;
-                loadStudents(className);
-            }
-        }
-
-        function loadStudents(className) {
+        function loadStudentClass(className) {
             const students = studentDatabase[className] || [];
-            const listIds = {
-                class6: 'studentList6', class7: 'studentList7', class8: 'studentList8',
-                class9: 'studentList9', class10: 'studentList10',
-                inter1: 'studentListInter1', inter2: 'studentListInter2'
-            };
-            const listContainer = document.getElementById(listIds[className]);
-            if (!listContainer) return;
+            const container = document.getElementById('studentListContainer');
             
-            listContainer.innerHTML = '';
+            let html = `<div class="class-container"><h3>Class ${className.toUpperCase()} - Students List</h3>`;
+            html += '<div class="student-list">';
+            
             students.forEach(student => {
                 const attendancePercent = (student.presentDays / student.totalDays * 100).toFixed(1);
                 const attendanceClass = attendancePercent >= 90 ? 'attendance-good' : 
                                        attendancePercent >= 70 ? 'attendance-warning' : 'attendance-danger';
                 
-                const card = document.createElement('div');
-                card.className = 'student-card';
-                card.onclick = () => showStudentDetails(student, className);
-                card.innerHTML = `
-                    <h4>${student.name}</h4>
-                    <p><strong>Roll:</strong> ${student.roll}</p>
-                    <p><strong>Section:</strong> ${student.section}</p>
-                    <p><strong>Attendance:</strong> ${student.presentDays}/${student.totalDays} দিন</p>
-                    <span class="attendance-badge ${attendanceClass}">${attendancePercent}%</span>
+                html += `
+                    <div class="student-card" onclick='showStudentDetails(${JSON.stringify(student)})'>
+                        <h4>${student.name}</h4>
+                        <p><strong>Roll:</strong> ${student.roll}</p>
+                        <p><strong>Section:</strong> ${student.section}</p>
+                        <p><strong>Attendance:</strong> ${student.presentDays}/${student.totalDays}</p>
+                        <span class="attendance-badge ${attendanceClass}">${attendancePercent}%</span>
+                    </div>
                 `;
-                listContainer.appendChild(card);
             });
+            
+            html += '</div></div>';
+            container.innerHTML = html;
         }
 
-        function showStudentDetails(student, className) {
+        function showStudentDetails(student) {
             const attendancePercent = (student.presentDays / student.totalDays * 100).toFixed(1);
-            const isEligible = attendancePercent >= 70;
             
-            let allExams = [...student.exams];
-            
-            Object.keys(teacherMarksData).forEach(teacherCode => {
-                const classData = teacherMarksData[teacherCode][className];
-                if (classData) {
-                    classData.forEach(record => {
-                        if ((record.examType === 'midterm' || record.examType === 'annual') && 
-                            record.marks[student.roll] !== undefined) {
-                            allExams.push({
-                                name: `${record.examName} (${record.subject})`,
-                                marks: record.marks[student.roll],
-                                totalMarks: record.totalMarks
-                            });
-                        }
-                    });
-                }
-            });
-            
-            let examRows = '';
-            let totalMarks = 0;
-            let examCount = 0;
-            
-            allExams.forEach(exam => {
-                const displayMarks = exam.totalMarks ? 
-                    `${exam.marks}/${exam.totalMarks}` : exam.marks;
-                examRows += `<tr><td>${exam.name}</td><td>${displayMarks}</td></tr>`;
-                totalMarks += exam.marks;
-                examCount++;
-            });
-            
-            const averageMarks = examCount > 0 ? (totalMarks / examCount).toFixed(2) : 0;
-            
-            const detailsHTML = `
+            let html = `
                 <h2>Student Details - ${student.name}</h2>
-                
                 <div class="detail-section">
                     <h3>📋 Basic Information</h3>
                     <div class="detail-row">
@@ -1538,596 +1180,275 @@
                         <span class="detail-label">Section:</span>
                         <span class="detail-value">${student.section}</span>
                     </div>
-                </div>
-
-                <div class="detail-section">
-                    <h3>📊 Attendance</h3>
                     <div class="detail-row">
-                        <span class="detail-label">Present Days:</span>
-                        <span class="detail-value">${student.presentDays}/${student.totalDays}</span>
+                        <span class="detail-label">Attendance:</span>
+                        <span class="detail-value">${attendancePercent}%</span>
                     </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Percentage:</span>
-                        <span class="detail-value" style="font-weight: bold; color: ${isEligible ? '#2ecc71' : '#e74c3c'};">${attendancePercent}%</span>
-                    </div>
-                </div>
-
-                <div class="detail-section">
-                    <h3>📝 Exam Results</h3>
-                    <table class="exam-table">
-                        <thead><tr><th>Exam</th><th>Marks</th></tr></thead>
-                        <tbody>
-                            ${examRows}
-                            <tr style="background: #3498db; color: white;"><td><strong>Average</strong></td><td><strong>${averageMarks}</strong></td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="scholarship-status ${isEligible ? 'scholarship-eligible' : 'scholarship-not-eligible'}">
-                    ${isEligible ? '✅ Eligible for Scholarship' : '❌ Not Eligible - Attendance must be 70% or more'}
                 </div>
             `;
             
-            document.getElementById('studentDetails').innerHTML = detailsHTML;
+            document.getElementById('studentDetails').innerHTML = html;
             document.getElementById('studentModal').style.display = 'block';
-        }
-
-        function searchStudent() {
-            const searchValue = document.getElementById('studentSearch').value.toLowerCase();
-            if (!currentClass || searchValue === '') {
-                if (currentClass) loadStudents(currentClass);
-                return;
-            }
-            
-            const students = studentDatabase[currentClass] || [];
-            const filtered = students.filter(s => 
-                s.roll.toString().includes(searchValue) || 
-                s.name.toLowerCase().includes(searchValue)
-            );
-            
-            const listIds = {
-                class6: 'studentList6', class7: 'studentList7', class8: 'studentList8',
-                class9: 'studentList9', class10: 'studentList10',
-                inter1: 'studentListInter1', inter2: 'studentListInter2'
-            };
-            const listContainer = document.getElementById(listIds[currentClass]);
-            if (!listContainer) return;
-            
-            listContainer.innerHTML = '';
-            
-            if (filtered.length === 0) {
-                listContainer.innerHTML = '<p style="text-align: center; padding: 20px; color: #e74c3c;">কোন ছাত্র পাওয়া যায়নি</p>';
-                return;
-            }
-            
-            filtered.forEach(student => {
-                const attendancePercent = (student.presentDays / student.totalDays * 100).toFixed(1);
-                const attendanceClass = attendancePercent >= 90 ? 'attendance-good' : 
-                                       attendancePercent >= 70 ? 'attendance-warning' : 'attendance-danger';
-                
-                const card = document.createElement('div');
-                card.className = 'student-card';
-                card.onclick = () => showStudentDetails(student, currentClass);
-                card.innerHTML = `
-                    <h4>${student.name}</h4>
-                    <p><strong>Roll:</strong> ${student.roll}</p>
-                    <p><strong>Section:</strong> ${student.section}</p>
-                    <p><strong>Attendance:</strong> ${student.presentDays}/${student.totalDays} দিন</p>
-                    <span class="attendance-badge ${attendanceClass}">${attendancePercent}%</span>
-                `;
-                listContainer.appendChild(card);
-            });
         }
 
         function closeModal() {
             document.getElementById('studentModal').style.display = 'none';
         }
 
+        function searchStudent() {
+            // Search functionality
+        }
+
         function selectTeacher(teacherCode) {
-            currentTeacher = teacherDatabase[teacherCode];
-            currentTeacherCode = teacherCode;
+            const teacher = teacherDatabase[teacherCode];
+            if (!teacher) return;
             
-            if (!currentTeacher) return;
-            
-            document.getElementById('teacherName').textContent = currentTeacher.name;
-            document.getElementById('teacherSubject').textContent = 'বিষয়: ' + currentTeacher.subject;
+            document.getElementById('teacherName').textContent = teacher.name;
+            document.getElementById('teacherSubject').textContent = 'বিষয়: ' + teacher.subject;
             document.getElementById('teacherDashboard').style.display = 'block';
-            document.getElementById('teacherStudentSection').style.display = 'none';
-            
-            if (!teacherMarksData[teacherCode]) {
-                teacherMarksData[teacherCode] = {};
-            }
-            
-            const classNames = {
-                'class6': 'Class 6', 'class7': 'Class 7', 'class8': 'Class 8',
-                'class9': 'Class 9', 'class10': 'Class 10',
-                'inter1': 'Inter 1st Year', 'inter2': 'Inter 2nd Year'
-            };
-            
-            const buttonContainer = document.getElementById('teacherClassButtons');
-            buttonContainer.innerHTML = '';
-            
-            currentTeacher.classes.forEach(className => {
-                const btn = document.createElement('button');
-                btn.setAttribute('data-tclass', className);
-                btn.textContent = classNames[className];
-                buttonContainer.appendChild(btn);
-            });
         }
 
-        function loadTeacherClass(className) {
-            if (!currentTeacher || !currentTeacher.classes.includes(className)) {
-                alert('⚠️ This teacher does not teach this class!');
-                return;
-            }
-            
-            currentTeacherClass = className;
-            document.getElementById('teacherStudentSection').style.display = 'block';
-            document.getElementById('marksEntryForm').style.display = 'none';
-            loadStudentInfoTable();
-        }
-
-        function selectExamType(examType) {
-            currentExamType = examType;
-            
-            const titles = {
-                midterm: '📘 Mid-Term Exam (অর্ধ-বার্ষিক পরীক্ষা)',
-                annual: '📗 Annual Exam (বার্ষিক পরীক্ষা)',
-                classtest: '📝 Class Test (ক্লাস টেস্ট)',
-                assessment: '📋 Assessment (এসেসমেন্ট)'
-            };
-            
-            document.getElementById('examTypeTitle').textContent = titles[examType];
-            document.getElementById('marksEntryForm').style.display = 'block';
-            document.getElementById('marksTableContainer').style.display = 'none';
-            document.getElementById('examName').value = '';
-            document.getElementById('totalMarks').value = '';
-        }
-
-        function loadMarksEntryTable() {
-            const examName = document.getElementById('examName').value.trim();
-            const totalMarks = parseInt(document.getElementById('totalMarks').value);
-            
-            if (!examName) {
-                alert('⚠️ Please enter exam name! / পরীক্ষার নাম লিখুন!');
-                return;
-            }
-            
-            if (!totalMarks || totalMarks < 1) {
-                alert('⚠️ Please enter valid total marks! / সঠিক মোট নম্বর লিখুন!');
-                return;
-            }
-            
-            const students = studentDatabase[currentTeacherClass] || [];
-            
-            if (students.length === 0) {
-                alert('⚠️ No students found in this class!');
-                return;
-            }
-            
-            let tableHTML = `
-                <thead>
-                    <tr>
-                        <th>Roll</th>
-                        <th>Student Name</th>
-                        <th>Section</th>
-                        <th>Marks (out of ${totalMarks})</th>
-                    </tr>
-                </thead>
-                <tbody>
-            `;
-            
-            students.forEach(student => {
-                tableHTML += `
-                    <tr>
-                        <td>${student.roll}</td>
-                        <td>${student.name}</td>
-                        <td>${student.section}</td>
-                        <td><input type="number" class="marks-input" data-roll="${student.roll}" min="0" max="${totalMarks}" placeholder="0-${totalMarks}" style="width: 100px; padding: 8px; border: 2px solid #3498db; border-radius: 5px; text-align: center;"></td>
-                    </tr>
-                `;
-            });
-            
-            tableHTML += '</tbody>';
-            
-            document.getElementById('marksEntryTable').innerHTML = tableHTML;
-            document.getElementById('marksTableContainer').style.display = 'block';
-            document.getElementById('successMessage').style.display = 'none';
-        }
-
-        function saveMarks() {
-            const examName = document.getElementById('examName').value.trim();
-            const totalMarks = parseInt(document.getElementById('totalMarks').value);
-            const marksInputs = document.querySelectorAll('.marks-input');
-            
-            if (!currentTeacher || !currentTeacherClass || !currentExamType) {
-                alert('⚠️ Missing information!');
-                return;
-            }
-            
-            if (!teacherMarksData[currentTeacherCode][currentTeacherClass]) {
-                teacherMarksData[currentTeacherCode][currentTeacherClass] = [];
-            }
-            
-            let savedCount = 0;
-            const marksRecord = {
-                examName: examName,
-                examType: currentExamType,
-                totalMarks: totalMarks,
-                subject: currentTeacher.subject,
-                date: new Date().toLocaleDateString('bn-BD'),
-                marks: {}
-            };
-            
-            marksInputs.forEach(input => {
-                const roll = parseInt(input.getAttribute('data-roll'));
-                const marks = parseInt(input.value);
-                
-                if (!isNaN(marks) && marks >= 0 && marks <= totalMarks) {
-                    marksRecord.marks[roll] = marks;
-                    savedCount++;
-                }
-            });
-            
-            if (savedCount === 0) {
-                alert('⚠️ No marks entered! / কোন নম্বর প্রদান করা হয়নি!');
-                return;
-            }
-            
-            teacherMarksData[currentTeacherCode][currentTeacherClass].push(marksRecord);
-            
-            const successMsg = document.getElementById('successMessage');
-            successMsg.style.display = 'block';
-            successMsg.textContent = `✅ Marks saved successfully for ${savedCount} students! / ${savedCount} জন ছাত্রের নম্বর সফলভাবে সংরক্ষিত হয়েছে!`;
-            
-            setTimeout(() => {
-                successMsg.style.display = 'none';
-            }, 5000);
-            
-            loadStudentInfoTable();
-        }
-
-        function loadStudentInfoTable() {
-            const students = studentDatabase[currentTeacherClass] || [];
-            
-            if (students.length === 0) {
-                document.getElementById('studentInfoTable').innerHTML = '<p>No students found</p>';
-                return;
-            }
-            
-            const classMarks = teacherMarksData[currentTeacherCode]?.[currentTeacherClass] || [];
-            
-            let tableHTML = `
-                <thead>
-                    <tr>
-                        <th>Roll</th>
-                        <th>Name</th>
-                        <th>Section</th>
-                        <th>Attendance</th>
-                        <th>All Marks (${currentTeacher.subject})</th>
-                    </tr>
-                </thead>
-                <tbody>
-            `;
-            
-            students.forEach(student => {
-                const attendancePercent = (student.presentDays / student.totalDays * 100).toFixed(1);
-                const attendanceColor = attendancePercent >= 90 ? '#2ecc71' : attendancePercent >= 70 ? '#f39c12' : '#e74c3c';
-                
-                let marksText = '-';
-                if (classMarks.length > 0) {
-                    const studentMarks = [];
-                    classMarks.forEach(record => {
-                        if (record.marks[student.roll] !== undefined) {
-                            studentMarks.push(`${record.examName}: ${record.marks[student.roll]}/${record.totalMarks}`);
-                        }
-                    });
-                    marksText = studentMarks.length > 0 ? studentMarks.join('<br>') : '-';
-                }
-                
-                tableHTML += `
-                    <tr>
-                        <td>${student.roll}</td>
-                        <td>${student.name}</td>
-                        <td>${student.section}</td>
-                        <td style="color: ${attendanceColor}; font-weight: bold;">${attendancePercent}%<br><small>${student.presentDays}/${student.totalDays} days</small></td>
-                        <td style="font-size: 14px;">${marksText}</td>
-                    </tr>
-                `;
-            });
-            
-            tableHTML += '</tbody>';
-            document.getElementById('studentInfoTable').innerHTML = tableHTML;
-        }
-
-        function showSport(sportName) {
-            document.querySelectorAll('#sports .class-container').forEach(c => c.style.display = 'none');
-            const container = document.getElementById(sportName);
-            if (container) {
-                container.style.display = 'block';
-                currentSport = sportName;
-                loadSportPlayers(sportName);
-            }
-        }
-
-        function loadSportPlayers(sportName) {
+        function loadSport(sportName) {
             const players = sportsDatabase[sportName] || [];
-            const listContainer = document.getElementById(sportName + 'List');
-            if (!listContainer) return;
+            const container = document.getElementById('sportsListContainer');
             
-            listContainer.innerHTML = '';
+            let html = `<div class="class-container"><h3>${sportName.toUpperCase()} Players</h3>`;
+            html += '<div class="student-list">';
+            
             players.forEach(player => {
-                const card = document.createElement('div');
-                card.className = 'student-card';
-                card.onclick = () => showPlayerDetails(player, sportName);
-                
-                const classInfo = player.department ? 
-                    `${player.class} - ${player.department}` : 
-                    `${player.class} - ${player.section}`;
-                
-                card.innerHTML = `
-                    <h4>${player.name}</h4>
-                    <p><strong>Class:</strong> ${classInfo}</p>
-                    <p><strong>Position:</strong> ${player.position}</p>
-                    <p><strong>Achievements:</strong> ${player.achievements}</p>
+                html += `
+                    <div class="student-card">
+                        <h4>${player.name}</h4>
+                        <p><strong>Class:</strong> ${player.class}</p>
+                        <p><strong>Position:</strong> ${player.position}</p>
+                    </div>
                 `;
-                listContainer.appendChild(card);
             });
+            
+            html += '</div></div>';
+            container.innerHTML = html;
         }
 
-        function showPlayerDetails(player, sportName) {
-            const sportNames = {
-                football: '⚽ Football',
-                cricket: '🏏 Cricket',
-                badminton: '🏸 Badminton',
-                volleyball: '🏐 Volleyball',
-                basketball: '🏀 Basketball',
-                tabletennis: '🏓 Table Tennis'
-            };
+        // Guardian Functions
+        function guardianLogin() {
+            const roll = parseInt(document.getElementById('guardianRoll').value);
+            const phone = document.getElementById('guardianPhone').value;
             
-            const classInfo = player.department ? 
-                `${player.class} - ${player.department}` : 
-                `${player.class} - ${player.section}`;
-            
-            const detailsHTML = `
-                <h2>Player Details - খেলোয়াড়ের বিবরণ</h2>
-                
-                <div class="detail-section">
-                    <h3>👤 Basic Information</h3>
-                    <div class="detail-row">
-                        <span class="detail-label">Name:</span>
-                        <span class="detail-value">${player.name}</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Class:</span>
-                        <span class="detail-value">${classInfo}</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Sport:</span>
-                        <span class="detail-value">${sportNames[sportName]}</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Position:</span>
-                        <span class="detail-value">${player.position}</span>
-                    </div>
-                </div>
-
-                <div class="detail-section">
-                    <h3>🏆 Achievements</h3>
-                    <div class="detail-row">
-                        <span class="detail-label">Major Achievements:</span>
-                        <span class="detail-value">${player.achievements}</span>
-                    </div>
-                </div>
-
-                <div class="scholarship-status scholarship-eligible">
-                    ⭐ Active Sports Player<br>সক্রিয় ক্রীড়া খেলোয়াড়
-                </div>
-            `;
-            
-            document.getElementById('studentDetails').innerHTML = detailsHTML;
-            document.getElementById('studentModal').style.display = 'block';
-        }
-
-        function selectResultClass(className) {
-            currentResultClass = className;
-            document.getElementById('resultExamTypeSection').style.display = 'block';
-            document.getElementById('resultDisplaySection').style.display = 'none';
-        }
-
-        function selectResultExam(examType) {
-            currentResultExam = examType;
-            loadResultTable();
-        }
-
-        function loadResultTable() {
-            if (!currentResultClass || !currentResultExam) return;
-            
-            const students = studentDatabase[currentResultClass] || [];
-            const classNames = {
-                'class6': 'Class 6', 'class7': 'Class 7', 'class8': 'Class 8',
-                'class9': 'Class 9', 'class10': 'Class 10',
-                'inter1': 'Inter 1st Year', 'inter2': 'Inter 2nd Year'
-            };
-            const examNames = {
-                'midterm': 'Mid-Term Exam (অর্ধ-বার্ষিক)',
-                'annual': 'Annual Exam (বার্ষিক)'
-            };
-            
-            document.getElementById('resultTitle').textContent = 
-                `${classNames[currentResultClass]} - ${examNames[currentResultExam]} Result`;
-            
-            const subjectMarks = {};
-            const subjects = [];
-            
-            Object.keys(teacherMarksData).forEach(teacherCode => {
-                const classData = teacherMarksData[teacherCode][currentResultClass];
-                if (classData) {
-                    classData.forEach(record => {
-                        if (record.examType === currentResultExam) {
-                            if (!subjects.includes(record.subject)) {
-                                subjects.push(record.subject);
-                            }
-                            if (!subjectMarks[record.subject]) {
-                                subjectMarks[record.subject] = {
-                                    examName: record.examName,
-                                    totalMarks: record.totalMarks,
-                                    marks: record.marks
-                                };
-                            }
-                        }
-                    });
+            let found = null;
+            for (let className in studentDatabase) {
+                const student = studentDatabase[className].find(s => s.roll === roll && s.guardianPhone === phone);
+                if (student) {
+                    found = student;
+                    break;
                 }
-            });
+            }
             
-            if (subjects.length === 0) {
-                document.getElementById('resultTable').innerHTML = 
-                    '<p style="text-align: center; padding: 20px; color: #e74c3c;">এই পরীক্ষার ফলাফল এখনো প্রকাশ করা হয়নি</p>';
-                document.getElementById('resultDisplaySection').style.display = 'block';
+            if (found) {
+                currentStudent = found;
+                document.getElementById('guardianLogin').style.display = 'none';
+                document.getElementById('guardianDashboard').style.display = 'block';
+                document.getElementById('guardianStudentName').textContent = `Student: ${found.name}`;
+                document.getElementById('guardianStudentInfo').textContent = `Roll: ${found.roll} | Section: ${found.section}`;
+                
+                const attendancePercent = (found.presentDays / found.totalDays * 100).toFixed(1);
+                document.getElementById('guardianAttendance').textContent = attendancePercent + '%';
+                document.getElementById('guardianAverage').textContent = found.exams[0].marks;
+                
+                loadNotifications();
+            } else {
+                alert('❌ Invalid credentials! Please check roll number and phone.');
+            }
+        }
+
+        function guardianLogout() {
+            currentStudent = null;
+            document.getElementById('guardianLogin').style.display = 'block';
+            document.getElementById('guardianDashboard').style.display = 'none';
+            document.getElementById('guardianRoll').value = '';
+            document.getElementById('guardianPhone').value = '';
+        }
+
+        function loadNotifications() {
+            const container = document.getElementById('notificationList');
+            
+            if (notifications.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #999;">No notifications yet</p>';
                 return;
             }
             
-            let tableHTML = '<thead><tr><th>Roll</th><th>Name</th><th>Section</th>';
-            subjects.forEach(subject => {
-                tableHTML += `<th>${subject}</th>`;
-            });
-            tableHTML += '<th>Total</th><th>Average</th></tr></thead><tbody>';
-            
-            students.forEach(student => {
-                let totalMarks = 0;
-                let subjectCount = 0;
-                let marksHTML = '';
-                
-                subjects.forEach(subject => {
-                    const subjectData = subjectMarks[subject];
-                    if (subjectData && subjectData.marks[student.roll] !== undefined) {
-                        const marks = subjectData.marks[student.roll];
-                        marksHTML += `<td>${marks}/${subjectData.totalMarks}</td>`;
-                        totalMarks += marks;
-                        subjectCount++;
-                    } else {
-                        marksHTML += '<td>-</td>';
-                    }
-                });
-                
-                const average = subjectCount > 0 ? (totalMarks / subjectCount).toFixed(2) : '-';
-                
-                tableHTML += `
-                    <tr>
-                        <td>${student.roll}</td>
-                        <td>${student.name}</td>
-                        <td>${student.section}</td>
-                        ${marksHTML}
-                        <td><strong>${totalMarks}</strong></td>
-                        <td><strong>${average}</strong></td>
-                    </tr>
-                `;
-            });
-            
-            tableHTML += '</tbody>';
-            document.getElementById('resultTable').innerHTML = tableHTML;
-            document.getElementById('resultDisplaySection').style.display = 'block';
-        }
-
-        function searchResult() {
-            const searchValue = document.getElementById('resultSearch').value.toLowerCase();
-            const rows = document.querySelectorAll('#resultTable tbody tr');
-            
-            rows.forEach(row => {
-                const roll = row.cells[0].textContent.toLowerCase();
-                const name = row.cells[1].textContent.toLowerCase();
-                
-                if (roll.includes(searchValue) || name.includes(searchValue)) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-            });
-        }
-
-        function showScholarshipList(className) {
-            currentScholarshipClass = className;
-            const students = studentDatabase[className] || [];
-            
-            const eligibleList = document.getElementById('scholarshipEligibleList');
-            const notEligibleList = document.getElementById('scholarshipNotEligibleList');
-            
-            eligibleList.innerHTML = '';
-            notEligibleList.innerHTML = '';
-            
-            students.forEach(student => {
-                const attendancePercent = (student.presentDays / student.totalDays * 100);
-                
-                let allMarks = [];
-                student.exams.forEach(exam => allMarks.push(exam.marks));
-                
-                Object.keys(teacherMarksData).forEach(teacherCode => {
-                    const classData = teacherMarksData[teacherCode][className];
-                    if (classData) {
-                        classData.forEach(record => {
-                            if (record.marks[student.roll] !== undefined) {
-                                allMarks.push(record.marks[student.roll]);
-                            }
-                        });
-                    }
-                });
-                
-                const averageMarks = allMarks.length > 0 ? 
-                    (allMarks.reduce((a, b) => a + b, 0) / allMarks.length) : 0;
-                
-                const isEligible = attendancePercent >= 70 && averageMarks >= 80;
-                
-                const card = document.createElement('div');
-                card.className = isEligible ? 'scholarship-card' : 'scholarship-card not-eligible';
-                card.innerHTML = `
-                    <div class="scholarship-header">
-                        <div class="scholarship-name">${student.name}</div>
-                        <div class="scholarship-badge ${isEligible ? 'badge-eligible' : 'badge-not-eligible'}">
-                            ${isEligible ? '✅ Eligible' : '❌ Not Eligible'}
-                        </div>
+            let html = '';
+            notifications.reverse().forEach(notif => {
+                html += `
+                    <div class="notification-box ${notif.type === 'alert' ? 'alert' : ''}">
+                        <strong>${notif.title}</strong>
+                        <p>${notif.message}</p>
+                        <div class="notification-time">${notif.time}</div>
                     </div>
-                    <p><strong>Roll:</strong> ${student.roll} | <strong>Section:</strong> ${student.section}</p>
-                    <p><strong>Attendance:</strong> ${attendancePercent.toFixed(1)}% (${student.presentDays}/${student.totalDays} days)</p>
-                    <p><strong>Average Marks:</strong> ${averageMarks.toFixed(2)}%</p>
-                    ${!isEligible ? `<p style="color: #e74c3c; margin-top: 10px;"><strong>Reason:</strong> ${
-                        attendancePercent < 70 ? 'Attendance below 70%' : 'Average marks below 80%'
-                    }</p>` : '<p style="color: #2ecc71; margin-top: 10px;"><strong>🎓 Scholarship Amount:</strong> 50% tuition fee waiver</p>'}
                 `;
-                
-                if (isEligible) {
-                    eligibleList.appendChild(card);
-                } else {
-                    notEligibleList.appendChild(card);
-                }
             });
             
-            document.getElementById('scholarshipList').style.display = 'block';
+            container.innerHTML = html;
         }
 
-        function submitAdmission(event) {
-            event.preventDefault();
+        function simulateAttendance() {
+            setInterval(() => {
+                if (currentStudent) {
+                    const now = new Date();
+                    const time = now.toLocaleTimeString('bn-BD');
+                    
+                    notifications.push({
+                        title: '✅ Attendance Notification',
+                        message: `${currentStudent.name} entered school at ${time}`,
+                        time: time,
+                        type: 'success'
+                    });
+                    
+                    loadNotifications();
+                }
+            }, 30000); // Every 30 seconds for demo
+        }
+
+        // Principal Functions
+        function principalLogin() {
+            const username = document.getElementById('principalUsername').value;
+            const password = document.getElementById('principalPassword').value;
             
-            const formData = new FormData(event.target);
-            const data = {};
-            formData.forEach((value, key) => {
-                data[key] = value;
-            });
+            if (username === 'admin' && password === 'admin123') {
+                document.getElementById('principalLogin').style.display = 'none';
+                document.getElementById('principalDashboard').style.display = 'block';
+                document.getElementById('addStudentBtn').style.display = 'block';
+                updateTotalStudents();
+            } else {
+                alert('❌ Invalid credentials!');
+            }
+        }
+
+        function principalLogout() {
+            document.getElementById('principalLogin').style.display = 'block';
+            document.getElementById('principalDashboard').style.display = 'none';
+            document.getElementById('addStudentBtn').style.display = 'none';
+            document.getElementById('principalUsername').value = '';
+            document.getElementById('principalPassword').value = '';
+        }
+
+        function updateTotalStudents() {
+            let total = 0;
+            for (let className in studentDatabase) {
+                total += studentDatabase[className].length;
+            }
+            document.getElementById('totalStudents').textContent = total;
+        }
+
+        function showAddStudentForm() {
+            document.getElementById('addStudentModal').style.display = 'block';
+            fingerprintData = {right1: false, right2: false, left1: false, left2: false};
+            document.getElementById('fingerprintStatus').style.display = 'none';
+            resetFingerprintUI();
+        }
+
+        function closeAddStudentModal() {
+            document.getElementById('addStudentModal').style.display = 'none';
+        }
+
+        function scanFingerprint(finger) {
+            const scanner = document.getElementById(finger === 'right1' ? 'rightFinger1' : 
+                                                   finger === 'right2' ? 'rightFinger2' :
+                                                   finger === 'left1' ? 'leftFinger1' : 'leftFinger2');
+            const status = document.getElementById(finger + 'Status');
             
-            console.log('Admission Form Data:', data);
-            
-            const successMsg = document.getElementById('admissionSuccess');
-            successMsg.style.display = 'block';
+            scanner.classList.add('scanning');
+            status.textContent = '⏳';
             
             setTimeout(() => {
-                event.target.reset();
-                successMsg.style.display = 'none';
-            }, 5000);
+                scanner.classList.remove('scanning');
+                status.textContent = '✅';
+                scanner.style.background = 'linear-gradient(135deg, #2ecc71 0%, #27ae60 100%)';
+                fingerprintData[finger] = true;
+                
+                if (fingerprintData.right1 && fingerprintData.right2 && 
+                    fingerprintData.left1 && fingerprintData.left2) {
+                    document.getElementById('fingerprintStatus').style.display = 'block';
+                }
+            }, 2000);
+        }
+
+        function resetFingerprintUI() {
+            ['rightFinger1', 'rightFinger2', 'leftFinger1', 'leftFinger2'].forEach(id => {
+                document.getElementById(id).style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                document.getElementById(id + 'Status').textContent = '👆';
+            });
+        }
+
+        function saveNewStudent() {
+            const name = document.getElementById('newStudentName').value;
+            const className = document.getElementById('newStudentClass').value;
+            const section = document.getElementById('newStudentSection').value;
+            
+            if (!name || !className || !section) {
+                alert('❌ Please fill all fields!');
+                return;
+            }
+            
+            if (!fingerprintData.right1 || !fingerprintData.right2 || 
+                !fingerprintData.left1 || !fingerprintData.left2) {
+                alert('❌ Please complete fingerprint registration!');
+                return;
+            }
+            
+            const newRoll = studentDatabase[className].length + 1;
+            const newStudent = {
+                roll: newRoll,
+                name: name,
+                section: section,
+                totalDays: 100,
+                presentDays: 0,
+                exams: [],
+                guardianPhone: "01700000000"
+            };
+            
+            studentDatabase[className].push(newStudent);
+            
+            alert('✅ Student added successfully!');
+            closeAddStudentModal();
+            updateTotalStudents();
+            
+            document.getElementById('newStudentName').value = '';
+            document.getElementById('newStudentClass').value = '';
+            document.getElementById('newStudentSection').value = '';
+        }
+
+        function viewAllStudents() {
+            let html = '<div class="info-card"><h3>📊 All Students</h3>';
+            
+            for (let className in studentDatabase) {
+                const students = studentDatabase[className];
+                if (students.length > 0) {
+                    html += `<h4 style="margin-top: 20px;">${className.toUpperCase()}: ${students.length} students</h4>`;
+                }
+            }
+            
+            html += '</div>';
+            document.getElementById('principalContent').innerHTML = html;
+        }
+
+        function viewAttendance() {
+            document.getElementById('principalContent').innerHTML = '<div class="info-card"><h3>📊 Attendance Report</h3><p>Attendance tracking system active</p></div>';
+        }
+
+        function viewResults() {
+            document.getElementById('principalContent').innerHTML = '<div class="info-card"><h3>📝 Results Overview</h3><p>Results management system</p></div>';
+        }
+
+        function submitAdmission() {
+            document.getElementById('admissionSuccess').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('admissionSuccess').style.display = 'none';
+            }, 3000);
         }
 
         window.onclick = function(event) {
-            const modal = document.getElementById('studentModal');
-            if (event.target == modal) {
-                modal.style.display = 'none';
+            if (event.target.className === 'modal') {
+                event.target.style.display = 'none';
             }
         };
     </script>
